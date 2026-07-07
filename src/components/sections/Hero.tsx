@@ -297,7 +297,6 @@ function HeroPhoto() {
               src="/optimized/hero-portrait.webp"
               alt="BoStan Law attorney"
               fill
-              quality={95}
               sizes="(min-width: 1024px) 900px, min(160vw, 900px)"
               className="object-cover"
             />

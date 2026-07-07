@@ -11,12 +11,10 @@ import { cn, toTelHref } from "@/lib/utils";
 
 /** Past this scroll offset the header swaps from transparent-over-photo to opaque white. */
 const SCROLL_THRESHOLD = 120;
-const LOGO_MAX_SCALE = 1.35;
 
 export function Header() {
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
-  const logoRef = useRef<HTMLAnchorElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
   const { language, setLanguage, ui } = useLanguage();
   const selectedLanguage = getLanguageOption(language);
@@ -36,17 +34,14 @@ export function Header() {
     const updateHeader = () => {
       frame = 0;
       const header = headerRef.current;
-      const logo = logoRef.current;
-      if (!header || !logo) return;
+      if (!header) return;
 
       const progress = Math.min(Math.max(window.scrollY / SCROLL_THRESHOLD, 0), 1);
-      const logoScale = LOGO_MAX_SCALE - (LOGO_MAX_SCALE - 1) * progress;
 
       header.style.backgroundColor = `rgb(255 255 255 / ${progress * 0.95})`;
       header.style.borderColor = `rgb(236 236 232 / ${progress})`;
       header.style.backdropFilter = `blur(${progress * 12}px)`;
       header.style.setProperty("-webkit-backdrop-filter", `blur(${progress * 12}px)`);
-      logo.style.transform = `translateZ(0) scale(${logoScale})`;
     };
 
     const onScroll = () => {
@@ -95,23 +90,21 @@ export function Header() {
         WebkitBackdropFilter: "blur(0px)",
       }}
     >
-      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-5 px-7 py-1">
+      <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between gap-2.5 px-5 sm:h-28 sm:gap-5 sm:px-7 lg:h-32">
         <a
-          ref={logoRef}
           href="#top"
-          className="flex origin-top-left items-center will-change-transform"
-          style={{ transform: `translateZ(0) scale(${LOGO_MAX_SCALE})` }}
+          className="flex w-[clamp(5.75rem,26vw,8rem)] items-center sm:w-[150px] lg:w-[190px]"
         >
           <Image
             src="/optimized/bostanlawlogo.webp"
             alt={siteConfig.name}
             width={512}
             height={341}
-            className="h-[100px] w-auto"
+            className="h-auto w-full"
             priority
           />
         </a>
-        <div className="flex items-center gap-6">
+        <div className="flex shrink-0 items-center gap-2.5 sm:gap-4 lg:gap-6">
           <div
             ref={languageMenuRef}
             className="relative hidden items-center gap-1.5 text-base font-medium text-ink sm:flex"
@@ -175,12 +168,18 @@ export function Header() {
           </div>
           <a
             href={toTelHref(siteConfig.phone)}
-            className="flex items-center gap-2 text-base font-bold tracking-tight text-ink"
+            aria-label={`Call ${siteConfig.phone}`}
+            className="flex size-10 items-center justify-center rounded-full text-ink transition-[background-color,color] hover:bg-white/70 focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none md:size-auto md:gap-2 md:rounded-none md:text-base md:font-bold md:tracking-tight"
           >
-            <Phone weight="fill" className="text-brand" size={18} />
-            <span className="whitespace-nowrap">{siteConfig.phone}</span>
+            <Phone weight="fill" className="size-6 text-brand md:size-[18px]" />
+            <span className="hidden whitespace-nowrap md:inline">{siteConfig.phone}</span>
           </a>
-          <Button render={<a href="#contact">{ui.header.consultation}</a>} nativeButton={false} size="lg" />
+          <Button
+            render={<a href="#contact">{ui.header.consultation}</a>}
+            nativeButton={false}
+            size="lg"
+            className="h-11 rounded-[10px] px-3 text-sm font-bold sm:px-5 sm:text-base"
+          />
         </div>
       </div>
     </header>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/site";
 
+const metadataTitle = "Bostan Law";
+
 export function absoluteUrl(path: string = ""): string {
   return new URL(path, siteConfig.url).toString();
 }
@@ -8,8 +10,8 @@ export function absoluteUrl(path: string = ""): string {
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Personal Injury Attorney in ${siteConfig.location}`,
-    template: `%s | ${siteConfig.name}`,
+    default: metadataTitle,
+    template: `%s | ${metadataTitle}`,
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
@@ -39,10 +41,14 @@ export const baseMetadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/icon.png", type: "image/png", sizes: "512x512" }],
   },
   openGraph: {
-    title: `${siteConfig.name} | Personal Injury Attorney in ${siteConfig.location}`,
+    title: metadataTitle,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
@@ -59,7 +65,7 @@ export const baseMetadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | Personal Injury Attorney in ${siteConfig.location}`,
+    title: metadataTitle,
     description: siteConfig.description,
     images: [absoluteUrl("/optimized/hero-background.webp")],
   },
