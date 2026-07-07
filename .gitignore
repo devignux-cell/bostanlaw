@@ -61,6 +61,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local source image exports (optimized WebP files are committed)
+/public/hf_*.png
+/public/bostanlawlogo.png
+/public/hero-portrait.png
+/public/phonenumbervector*.png
+
 # local tool and editor state
 .agents/
 .claude/

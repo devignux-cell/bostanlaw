@@ -1,26 +1,259 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-heading: var(--font-sans);
+  /* BoStan Law brand tokens, from the approved design */
+  --color-brand: #ed1c24;
+  --color-ink: #0f0f0f;
+  --color-cream: #f7f7f5;
+  --color-line: #ecece8;
+  --color-line-strong: #e6e6e3;
+  --color-muted-fg: #6b6b6b;
+  --color-subtle-fg: #8a8a8a;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --font-body: "Archivo", "Inter", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #ed1c24;
+  --primary-foreground: #ffffff;
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans scroll-smooth;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes bostan-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-bostan-reveal {
+  animation: bostan-reveal 0.4s ease both;
+}
+
+@property --reveal-radius {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+.legal-matter-watermark {
+  --reveal-x: 50%;
+  --reveal-y: 50%;
+  --reveal-radius: 0px;
+}
+
+.legal-matter-watermark-light {
+  -webkit-mask-image: radial-gradient(
+    circle at var(--reveal-x) var(--reveal-y),
+    #000 0,
+    #000 calc(var(--reveal-radius) - 86px),
+    rgb(0 0 0 / 0.7) calc(var(--reveal-radius) - 48px),
+    transparent var(--reveal-radius)
+  );
+  mask-image: radial-gradient(
+    circle at var(--reveal-x) var(--reveal-y),
+    #000 0,
+    #000 calc(var(--reveal-radius) - 86px),
+    rgb(0 0 0 / 0.7) calc(var(--reveal-radius) - 48px),
+    transparent var(--reveal-radius)
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  transition: --reveal-radius 260ms ease-out;
+}
+
+.practice-area-image {
+  transform-origin: center;
+  transform: scale(1);
+  backface-visibility: hidden;
+  transition: transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.practice-area-image-muted {
+  filter: grayscale(1);
+  opacity: 1;
+  transition:
+    opacity 650ms ease,
+    transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.practice-area-card:hover .practice-area-image {
+  transform: scale(1.12);
+}
+
+.practice-area-card:hover .practice-area-image-muted {
+  opacity: 0;
+}
+
+.why-choose-card-image {
+  transform: translateY(-8px) scale(1.08);
+  transform-origin: center;
+  transition: transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.why-choose-card-shade,
+.why-choose-card-gradient {
+  transition: opacity 900ms ease;
+}
+
+.why-choose-card:hover .why-choose-card-image {
+  transform: translateY(12px) scale(1.01);
+}
+
+.why-choose-card:hover .why-choose-card-shade {
+  opacity: 0.65;
+}
+
+.why-choose-card:hover .why-choose-card-gradient {
+  opacity: 0.75;
+}
+
+@media (max-width: 767px) {
+  section:not(.faq) {
+    text-align: center;
+  }
+
+  section:not(.faq) :where(.practice-area-card, .practice-area-card *, .why-choose-card, .why-choose-card *) {
+    text-align: left;
+  }
+
+  section:not(.faq) :where(input, textarea) {
+    text-align: left;
+  }
+
+  .contact a {
+    justify-content: center;
+  }
+
+  .contact p {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
