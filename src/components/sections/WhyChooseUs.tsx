@@ -15,8 +15,15 @@ export function WhyChooseUs() {
     <section className="why-choose-us border-y border-line bg-cream">
       <div className="mx-auto max-w-[1200px] px-7 py-22">
         <div className="mb-17 flex flex-col gap-2">
-          <h2 className="m-0 text-[clamp(30px,4.5vw,50px)] font-black tracking-[-0.02em]">
-            {ui.whyChoose.headingLead} <span className="text-brand">{siteConfig.name}</span>
+          <h2 className="m-0 flex flex-wrap items-center gap-x-3 gap-y-2 text-[clamp(30px,4.5vw,50px)] leading-[1.05] font-black tracking-[-0.02em]">
+            <span>{ui.whyChoose.headingLead}</span>
+            <Image
+              src="/optimized/bostanlawlogo-inline.webp"
+              alt={siteConfig.name}
+              width={441}
+              height={74}
+              className="h-[clamp(1.75rem,4vw,2.75rem)] w-auto"
+            />
           </h2>
           <p className="m-0 text-xl font-medium text-subtle-fg">
             {ui.whyChoose.subheading}
