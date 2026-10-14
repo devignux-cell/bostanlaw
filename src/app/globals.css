@@ -137,6 +137,14 @@
   html {
     @apply font-sans scroll-smooth;
   }
+  section[id] {
+    scroll-margin-top: 8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-bostan-reveal { animation: none; }
 }
 
 @keyframes bostan-reveal {

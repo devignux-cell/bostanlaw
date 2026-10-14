@@ -2,20 +2,19 @@
 
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { homepageContentByLanguage } from "@/data/homepage";
 import { siteConfig } from "@/data/site";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export function WhyChooseUs() {
   const ref = useScrollReveal<HTMLDivElement>({ stagger: true });
-  const { language, ui } = useLanguage();
-  const { whyChoose } = homepageContentByLanguage[language];
+  const { dictionary, ui } = useLanguage();
+  const { whyChoose } = dictionary.homepage;
 
   return (
     <section className="why-choose-us border-y border-line bg-cream">
       <div className="mx-auto max-w-[1200px] px-7 py-22">
-        <div className="mb-17 flex flex-col gap-2">
-          <h2 className="m-0 flex flex-wrap items-center gap-x-3 gap-y-2 text-[clamp(30px,4.5vw,50px)] leading-[1.05] font-black tracking-[-0.02em]">
+        <div className="mb-17 flex flex-col gap-2 text-center sm:text-left">
+          <h2 className="m-0 flex flex-col items-center gap-x-3 gap-y-2 text-[clamp(30px,4.5vw,50px)] leading-[1.05] font-black tracking-[-0.02em] sm:flex-row sm:flex-wrap sm:justify-start">
             <span>{ui.whyChoose.headingLead}</span>
             <Image
               src="/optimized/bostanlawlogo-inline.webp"
@@ -25,7 +24,7 @@ export function WhyChooseUs() {
               className="h-[clamp(1.75rem,4vw,2.75rem)] w-auto"
             />
           </h2>
-          <p className="m-0 text-xl font-medium text-subtle-fg">
+          <p className="mx-auto max-w-[30rem] text-xl leading-[1.5] font-medium text-subtle-fg sm:mx-0 sm:max-w-none">
             {ui.whyChoose.subheading}
           </p>
         </div>
@@ -36,7 +35,7 @@ export function WhyChooseUs() {
           {whyChoose.map((item) => (
             <div
               key={item.name}
-              className="why-choose-card relative h-[420px] overflow-hidden rounded-[20px] lg:h-[476px]"
+              className="why-choose-card relative min-h-[420px] overflow-hidden rounded-[20px] lg:min-h-[476px]"
             >
               <div className="why-choose-card-image absolute inset-0">
                 <Image
@@ -49,7 +48,7 @@ export function WhyChooseUs() {
               </div>
               <div className="why-choose-card-shade absolute inset-0 bg-[rgba(0,0,0,0.34)]" />
               <div className="why-choose-card-gradient absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.86)] via-[rgba(0,0,0,0.58)] to-[rgba(0,0,0,0.44)]" />
-              <div className="relative flex h-full flex-col justify-start px-7 pt-12">
+              <div className="relative flex h-full flex-col justify-start px-7 pt-12 pb-10">
                 <p className="m-0 text-[clamp(23px,2.5vw,32px)] leading-[1.1] font-extrabold tracking-[-0.01em] break-words text-white">
                   {item.name}
                 </p>

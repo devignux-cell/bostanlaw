@@ -1,7 +1,6 @@
 import type { HomepageContent } from "@/types/homepage";
-import type { Language } from "@/types/language";
 
-export const homepageContentByLanguage: Record<Language, HomepageContent> = {
+export const homepageContentByLanguage: Record<"en" | "es", HomepageContent> = {
   en: {
     heroVariant: "photo",
     hero: {
@@ -64,7 +63,7 @@ export const homepageContentByLanguage: Record<Language, HomepageContent> = {
     heroVariant: "photo",
     hero: {
       eyebrow: "Abogado de lesiones personales",
-      headlineLead: "Lesionado?",
+      headlineLead: "¿Lesionado?",
       headlineConnector: "Hablemos",
       headlineAccent: ".",
       subhead:
@@ -74,26 +73,26 @@ export const homepageContentByLanguage: Record<Language, HomepageContent> = {
       headlineLine1: "Usted se concentra en sanar.",
       headlineLine2: "Nosotros nos encargamos del resto.",
       subhead:
-        "Su primera conversacion es gratis. Lo escucharemos, responderemos sus preguntas y le ayudaremos a entender sus opciones.",
-      subheadEmphasis: "Sin presion.",
-      trustLine: "Sin presion. Sin obligacion. Estamos aqui para ayudarle.",
+        "Su primera conversación es gratis. Lo escucharemos, responderemos sus preguntas y le ayudaremos a entender sus opciones.",
+      subheadEmphasis: "Sin presión.",
+      trustLine: "Sin presión. Sin obligación. Estamos aquí para ayudarle.",
       ctaPrimaryLabel: "Consulta gratis",
-      ctaSecondaryLabel: "Llamenos hoy",
-      floatingChipEyebrow: "Llamenos hoy",
+      ctaSecondaryLabel: "Llámenos hoy",
+      floatingChipEyebrow: "Llámenos hoy",
       floatingChipBody:
-        "Dedicados a conseguir la justicia y compensacion que usted merece",
+        "Dedicados a conseguir la justicia y compensación que usted merece",
     },
     legalMatter: {
-      heading: "Tiene un asunto legal?",
-      subheading: "Estamos aqui para ayudarle. Diganos en que situacion se encuentra.",
+      heading: "¿Tiene un asunto legal?",
+      subheading: "Estamos aquí para ayudarle. Díganos en qué situación se encuentra.",
       yesReveal: {
-        heading: "Hablemos. Cuentenos que paso ->",
-        ctaLabel: "Cuentenos su caso",
+        heading: "Hablemos. Cuéntenos qué pasó →",
+        ctaLabel: "Cuéntenos su caso",
         ctaHref: "#contact",
       },
       noReveal: {
-        heading: "No hay problema. Asi podemos ayudarle - mire aqui.",
-        ctaLabel: "Ver mas",
+        heading: "No hay problema. Así podemos ayudarle - mire aquí.",
+        ctaLabel: "Ver más",
         ctaHref: "#areas",
       },
     },
@@ -101,19 +100,19 @@ export const homepageContentByLanguage: Record<Language, HomepageContent> = {
       {
         name: "Siempre accesibles",
         body:
-          "Cuando tenga preguntas, hablara con una persona real lista para ayudarle. Respondemos con prontitud porque la comunicacion clara importa en cada paso.",
+          "Cuando tenga preguntas, hablará con una persona real lista para ayudarle. Respondemos con prontitud porque la comunicación clara importa en cada paso.",
         image: "/optimized/why-accessible.webp",
       },
       {
-        name: "Atencion personal",
+        name: "Atención personal",
         body:
-          "Trabajara directamente con su abogado desde la primera consulta hasta la resolucion de su caso. Sin entregas innecesarias. Solo orientacion constante y personal en cada paso.",
+          "Trabajará directamente con su abogado desde la primera consulta hasta la resolución de su caso. Sin cambios innecesarios de representante. Solo orientación constante y personal en cada paso.",
         image: "/optimized/why-personal-attention.webp",
       },
       {
-        name: "Representacion centrada en el cliente",
+        name: "Representación centrada en el cliente",
         body:
-          "Cada caso merece preparacion cuidadosa, orientacion honesta y defensa dedicada. Desde su primera consulta hasta la resolucion de su caso, estamos comprometidos a proteger sus derechos y ayudarle a avanzar con confianza.",
+          "Cada caso merece preparación cuidadosa, orientación honesta y defensa dedicada. Desde su primera consulta hasta la resolución de su caso, estamos comprometidos a proteger sus derechos y ayudarle a avanzar con confianza.",
         image: "/optimized/why-client-first.webp",
       },
     ],

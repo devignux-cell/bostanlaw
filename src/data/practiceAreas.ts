@@ -1,7 +1,6 @@
 import type { PracticeArea } from "@/types/practiceArea";
-import type { Language } from "@/types/language";
 
-export const practiceAreasByLanguage: Record<Language, PracticeArea[]> = {
+export const practiceAreasByLanguage: Record<"en" | "es", PracticeArea[]> = {
   en: [
     {
       name: "Car Accidents",
@@ -46,29 +45,29 @@ export const practiceAreasByLanguage: Record<Language, PracticeArea[]> = {
     },
     {
       name: "Accidentes de motocicleta",
-      description: "Las lesiones graves merecen representacion seria.",
+      description: "Las lesiones graves merecen representación seria.",
       image: "/optimized/practice-motorcycle-accidents.webp",
     },
     {
-      name: "Accidentes de camion",
-      description: "Enfrentamos a companias de transporte y sus aseguradoras.",
+      name: "Accidentes de camión",
+      description: "Enfrentamos a compañías de transporte y sus aseguradoras.",
       image: "/optimized/practice-truck-accidents.webp",
     },
     {
-      name: "Resbalones y caidas",
-      description: "Propiedad insegura? Los duenos deben responder.",
+      name: "Resbalones y caídas",
+      description: "¿Propiedad insegura? Los dueños deben responder.",
       image: "/optimized/practice-slip-fall.webp",
     },
     {
-      name: "Muerte injusta",
+      name: "Fallecimiento por culpa ajena",
       description:
-        "Ayuda compasiva cuando una perdida fue culpa de otra persona.",
+        "Ayuda compasiva cuando una pérdida fue culpa de otra persona.",
       image: "/optimized/practice-wrongful-death.webp",
     },
     {
       name: "Mordeduras de perro",
       description:
-        "Si le mordieron, reuniremos la evidencia necesaria para protegerle.",
+        "Si le mordieron, reuniremos las pruebas necesarias para protegerle.",
       image: "/optimized/practice-dog-bite.webp",
     },
   ],

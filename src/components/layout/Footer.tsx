@@ -4,10 +4,11 @@ import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { siteConfig } from "@/data/site";
 import { toTelHref } from "@/lib/utils";
+import { legalDisclaimerPath } from "@/i18n/config";
 
 export function Footer() {
   const year = new Date().getFullYear();
-  const { ui } = useLanguage();
+  const { ui, dictionary, language } = useLanguage();
 
   return (
     <footer className="footer border-t border-line bg-white">
@@ -27,6 +28,9 @@ export function Footer() {
             {siteConfig.phone}
           </a>
           <span>{siteConfig.location}</span>
+          <a href={legalDisclaimerPath(language)} className="underline decoration-line-strong underline-offset-4 hover:text-brand focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
+            {dictionary.legal.heading}
+          </a>
           <span>
             © {year} {siteConfig.name}
             <span className="sr-only"> {ui.footer.copyrightLabel}</span>

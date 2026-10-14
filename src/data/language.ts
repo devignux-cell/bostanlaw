@@ -1,31 +1,8 @@
-import type { LanguageOption } from "@/types/language";
-
-export const languageOptions: LanguageOption[] = [
-  {
-    value: "en",
-    label: "English",
-    shortLabel: "EN",
-    flag: "🇺🇸",
-  },
-  {
-    value: "es",
-    label: "Español",
-    shortLabel: "ES",
-    flag: "🇪🇸",
-  },
-];
-
 export const uiContent = {
   en: {
     language: {
       currentAriaLabel: "Choose site language",
       menuLabel: "Language options",
-      modalTitle: "Choose your preferred language",
-      modalDescription:
-        "You can change this anytime from the language menu in the header.",
-      closeLabel: "Close language preference modal",
-      continueEnglish: "Continue in English",
-      continueSpanish: "Continue in Spanish",
     },
     header: {
       consultation: "Free Consultation",
@@ -87,12 +64,6 @@ export const uiContent = {
     language: {
       currentAriaLabel: "Elegir idioma del sitio",
       menuLabel: "Opciones de idioma",
-      modalTitle: "Elija su idioma preferido",
-      modalDescription:
-        "Puede cambiarlo en cualquier momento desde el menu de idioma en el encabezado.",
-      closeLabel: "Cerrar modal de preferencia de idioma",
-      continueEnglish: "Continuar en inglés",
-      continueSpanish: "Continuar en español",
     },
     header: {
       consultation: "Consulta gratis",

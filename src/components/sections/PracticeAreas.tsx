@@ -3,22 +3,21 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { practiceAreasByLanguage } from "@/data/practiceAreas";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export function PracticeAreas() {
   const ref = useScrollReveal<HTMLDivElement>({ stagger: true });
-  const { language, ui } = useLanguage();
-  const practiceAreas = practiceAreasByLanguage[language];
+  const { dictionary, ui } = useLanguage();
+  const practiceAreas = dictionary.practiceAreas;
 
   return (
     <section id="areas" className="practice-areas">
       <div className="mx-auto max-w-[1200px] px-7 py-22">
-        <div className="mb-10 flex flex-col gap-0">
+        <div className="mb-10 flex flex-col items-center gap-0 text-center sm:items-start sm:text-left">
           <h2 className="m-0 text-[clamp(30px,4.5vw,50px)] font-black tracking-[-0.02em]">
             {ui.practiceAreas.heading}
           </h2>
-          <span className="text-lg font-medium text-subtle-fg">
+          <span className="max-w-[34rem] text-lg leading-[1.5] font-medium text-subtle-fg sm:max-w-none">
             {ui.practiceAreas.subheading}
           </span>
         </div>
@@ -70,7 +69,7 @@ export function PracticeAreas() {
           <Button
             size="lg"
             nativeButton={false}
-            className="h-auto rounded-md px-[30px] py-[17px] text-[17px]"
+            className="h-auto min-w-0 w-full max-w-full rounded-md px-4 py-[17px] text-center text-[17px] whitespace-normal sm:w-auto sm:px-[30px]"
             render={<a href="#contact">{ui.practiceAreas.ctaLabel}</a>}
           />
         </div>

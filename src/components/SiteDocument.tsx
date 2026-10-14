@@ -1,20 +1,14 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
-import { baseMetadata } from "@/lib/seo";
-import "./globals.css";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/types";
 
-export const metadata = baseMetadata;
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export function SiteDocument({ children, locale, dictionary }: { children: React.ReactNode; locale: Locale; dictionary: Dictionary }) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang={locale} className="h-full antialiased">
       <body className="min-h-full overflow-x-hidden bg-white text-ink">
-        <LanguageProvider>
+        <LanguageProvider locale={locale} dictionary={dictionary}>
           <Header />
           {children}
           <Footer />
