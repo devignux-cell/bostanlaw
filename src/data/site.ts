@@ -5,7 +5,7 @@ export const siteConfig: SiteConfig = {
   shortName: "BoStan Law",
   description:
     "Personal injury attorney serving Boston, MA. Free consultation. No fee unless we win.",
-  // Placeholder domain — update once the firm's real domain is known.
+  // Canonical production origin for localized metadata and sitemap entries.
   url: "https://bostanlaw.com",
   phone: "617-600-2005",
   fax: "617-600-2001",

@@ -7,18 +7,17 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { faqsByLanguage } from "@/data/faqs";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export function FAQSection() {
   const ref = useScrollReveal<HTMLDivElement>({ stagger: true });
-  const { language, ui } = useLanguage();
-  const faqs = faqsByLanguage[language];
+  const { dictionary, ui } = useLanguage();
+  const faqs = dictionary.faqs;
 
   return (
     <section className="faq">
       <div className="mx-auto max-w-[1200px] px-7 py-22">
-        <h2 className="m-0 mb-8.5 text-[clamp(30px,4.5vw,50px)] font-black tracking-[-0.02em]">
+        <h2 className="m-0 mb-8.5 text-center text-[clamp(30px,4.5vw,50px)] font-black tracking-[-0.02em] sm:text-left">
           {ui.faq.heading}
         </h2>
         <Accordion ref={ref} className="border-t border-line-strong">

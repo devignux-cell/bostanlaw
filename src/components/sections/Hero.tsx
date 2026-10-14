@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowRight, Phone, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { homepageContentByLanguage } from "@/data/homepage";
 import { siteConfig } from "@/data/site";
 import { cn, toTelHref } from "@/lib/utils";
 import { gsap, useGSAP } from "@/lib/gsap";
@@ -13,8 +12,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import type { HeroContent, HeroVariant } from "@/types/homepage";
 
 function Eyebrow() {
-  const { language } = useLanguage();
-  const { hero } = homepageContentByLanguage[language];
+  const { dictionary } = useLanguage();
+  const { hero } = dictionary.homepage;
 
   return (
     <div className="mb-6 inline-flex items-center gap-2.5 text-[13px] font-bold tracking-[0.08em] text-subtle-fg uppercase">
@@ -89,8 +88,8 @@ function DualCta() {
 }
 
 function HeroStatement() {
-  const { language } = useLanguage();
-  const { hero } = homepageContentByLanguage[language];
+  const { dictionary } = useLanguage();
+  const { hero } = dictionary.homepage;
 
   return (
     <div className="mx-auto max-w-[1200px] px-7 pt-24 pb-[84px]">
@@ -110,8 +109,8 @@ function HeroStatement() {
 }
 
 function HeroSplit() {
-  const { language, ui } = useLanguage();
-  const { hero, legalMatter } = homepageContentByLanguage[language];
+  const { dictionary, ui } = useLanguage();
+  const { hero, legalMatter } = dictionary.homepage;
 
   return (
     <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-14 px-7 pt-20 pb-[76px] md:grid-cols-[1.15fr_0.85fr]">
@@ -154,8 +153,8 @@ function HeroSplit() {
 }
 
 function HeroCentered() {
-  const { language } = useLanguage();
-  const { hero } = homepageContentByLanguage[language];
+  const { dictionary } = useLanguage();
+  const { hero } = dictionary.homepage;
 
   return (
     <div className="px-7 pt-21 pb-[76px] text-center">
@@ -184,8 +183,8 @@ function HeroCentered() {
 }
 
 function HeroPhoto() {
-  const { language } = useLanguage();
-  const { heroPhoto } = homepageContentByLanguage[language];
+  const { dictionary } = useLanguage();
+  const { heroPhoto } = dictionary.homepage;
   const backgroundRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const portraitRef = useRef<HTMLDivElement>(null);
@@ -251,8 +250,8 @@ function HeroPhoto() {
         }}
       />
       <div className="relative mx-auto flex max-w-[1200px] flex-col items-center gap-12 px-7 pt-[180px] lg:flex-row lg:items-start lg:justify-between lg:gap-10">
-        <div ref={contentRef} className="hero-photo-content w-full max-w-[600px] lg:pt-20 pb-16 lg:pb-[100px]">
-          <h1 className="text-[clamp(40px,6.5vw,54px)] leading-[1.05] font-black tracking-[-0.03em] text-[#333]">
+        <div ref={contentRef} className="hero-photo-content min-w-0 w-full max-w-[600px] lg:pt-20 pb-16 lg:pb-[100px]">
+          <h1 className="text-[clamp(40px,6.5vw,54px)] leading-[1.05] font-black tracking-[-0.03em] wrap-anywhere text-[#333]">
             {heroPhoto.headlineLine1}
             <br />
             <span className="text-brand">{heroPhoto.headlineLine2}</span>
@@ -261,11 +260,11 @@ function HeroPhoto() {
             {heroPhoto.subhead}{" "}
             <span className="font-bold italic">{heroPhoto.subheadEmphasis}</span>
           </p>
-          <div className="mt-18 flex flex-wrap justify-center gap-4 lg:justify-start">
+          <div className="mt-18 flex min-w-0 flex-wrap justify-center gap-4 lg:justify-start">
             <Button
               size="lg"
               nativeButton={false}
-              className="h-auto gap-2.5 rounded-md px-[30px] py-[17px] text-[17px]"
+              className="h-auto min-w-0 w-full gap-2.5 rounded-md px-4 py-[17px] text-center text-[15px] whitespace-normal sm:w-auto sm:px-[30px] sm:text-[17px]"
               render={
                 <a href="#contact">
                   {heroPhoto.ctaPrimaryLabel} <ArrowRight size={18} />
@@ -276,7 +275,7 @@ function HeroPhoto() {
               size="lg"
               variant="outline"
               nativeButton={false}
-              className="h-auto gap-2.5 rounded-md border-[1.5px] border-ink bg-transparent px-[30px] py-[17px] text-[17px] text-ink hover:bg-black/5"
+              className="h-auto min-w-0 w-full gap-2.5 rounded-md border-[1.5px] border-ink bg-transparent px-4 py-[17px] text-center text-[15px] whitespace-normal text-ink hover:bg-black/5 sm:w-auto sm:px-[30px] sm:text-[17px]"
               render={
                 <a href={toTelHref(siteConfig.phone)}>
                   <Phone weight="fill" size={18} /> {heroPhoto.ctaSecondaryLabel}
@@ -291,16 +290,16 @@ function HeroPhoto() {
             </p>
           </div>
         </div>
-        <div ref={portraitRef} className="hero-photo-portrait relative w-full max-w-[480px] shrink-0 lg:w-[480px] lg:self-end">
-          <div className="relative aspect-[476/589] w-full overflow-hidden rounded-xl">
-            <Image
-              src="/optimized/hero-portrait.webp"
-              alt="BoStan Law attorney"
-              fill
-              sizes="(min-width: 1024px) 900px, min(160vw, 900px)"
-              className="object-cover"
-            />
-          </div>
+        <div ref={portraitRef} className="hero-photo-portrait relative w-full max-w-[480px] shrink-0 lg:w-[min(40vw,480px)] lg:self-end">
+          <Image
+            src="/optimized/stan-hero-cutout.webp"
+            alt={dictionary.team.stan.imageAlt}
+            width={1100}
+            height={1258}
+            priority
+            sizes="(min-width: 1200px) 480px, (min-width: 1024px) 40vw, (min-width: 640px) 480px, calc(100vw - 56px)"
+            className="h-auto w-full object-contain"
+          />
           <a
             href={toTelHref(siteConfig.phone)}
             className="absolute -right-4 bottom-10 hidden w-[260px] flex-col gap-2.5 rounded-sm bg-[rgba(255,0,0,0.4)] px-4 py-3 text-white shadow-[4px_4px_4px_rgba(0,0,0,0.15)] backdrop-blur-[8px] lg:flex"
@@ -325,9 +324,9 @@ const variants: Record<HeroVariant, () => React.JSX.Element> = {
 };
 
 export function Hero() {
-  const { language } = useLanguage();
+  const { dictionary } = useLanguage();
   const revealRef = useScrollReveal<HTMLElement>();
-  const { heroVariant } = homepageContentByLanguage[language];
+  const { heroVariant } = dictionary.homepage;
   const Variant = variants[heroVariant];
 
   return (

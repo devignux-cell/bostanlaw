@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowDown } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { homepageContentByLanguage } from "@/data/homepage";
 import { trackEvent } from "@/lib/analytics";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -88,8 +87,8 @@ export function LegalMatterPrompt() {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const foregroundRef = useScrollReveal<HTMLDivElement>();
   const [matter, setMatter] = useState<Matter>(null);
-  const { language, ui } = useLanguage();
-  const { legalMatter } = homepageContentByLanguage[language];
+  const { dictionary, ui } = useLanguage();
+  const { legalMatter } = dictionary.homepage;
 
   useGSAP(
     () => {
@@ -137,7 +136,9 @@ export function LegalMatterPrompt() {
     trackEvent("legal_matter_prompt", { answer: value });
     const target = value === "yes" ? legalMatter.yesReveal.ctaHref : legalMatter.noReveal.ctaHref;
     setTimeout(() => {
-      document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
+      document.querySelector(target)?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      });
     }, 420);
   }
 

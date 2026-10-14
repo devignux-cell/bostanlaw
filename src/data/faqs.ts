@@ -1,7 +1,6 @@
 import type { Faq } from "@/types/faq";
-import type { Language } from "@/types/language";
 
-export const faqsByLanguage: Record<Language, Faq[]> = {
+export const faqsByLanguage: Record<"en" | "es", Faq[]> = {
   en: [
     {
       question: "How much does it cost?",
@@ -21,17 +20,17 @@ export const faqsByLanguage: Record<Language, Faq[]> = {
   ],
   es: [
     {
-      question: "Cuanto cuesta?",
+      question: "¿Cuánto cuesta?",
       answer:
         "Nada por adelantado. Trabajamos con honorarios de contingencia: no cobramos a menos que ganemos su caso. La consulta siempre es gratis.",
     },
     {
-      question: "Cuanto tiempo tengo para presentar un reclamo?",
+      question: "¿Cuánto tiempo tengo para presentar un reclamo?",
       answer:
-        "Los plazos legales varian segun el estado y el tipo de reclamo, y pueden ser cortos. Llamenos pronto para no perder su derecho a recuperar compensacion.",
+        "Los plazos legales varían según el estado y el tipo de reclamo, y pueden ser cortos. Llámenos pronto para no perder su derecho a recuperar compensación.",
     },
     {
-      question: "Debo llamar a mi compania de seguros?",
+      question: "¿Debo llamar a mi compañía de seguros?",
       answer:
         "Hable con nosotros primero. Las aseguradoras pueden intentar reducir su reclamo; nos aseguraremos de que no diga nada que perjudique su caso.",
     },
