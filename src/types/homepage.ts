@@ -9,6 +9,9 @@ export interface HeroContent {
 }
 
 export interface HeroPhotoContent {
+  brandDescriptor: string;
+  primaryLine1: string;
+  primaryLine2: string;
   headlineLine1: string;
   headlineLine2: string;
   subhead: string;

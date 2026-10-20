@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "./fonts.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -9,8 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-body);
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  --font-heading: var(--font-sans);
-  /* BoStan Law brand tokens, from the approved design */
+  --font-heading: var(--font-display);
+  /* BOSTAN LAW brand tokens, from the approved design */
   --color-brand: #ed1c24;
   --color-ink: #0f0f0f;
   --color-cream: #f7f7f5;
@@ -57,8 +58,8 @@
 }
 
 :root {
-  --font-body: "Archivo", "Inter", ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Inter", Arial, sans-serif;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Inter", sans-serif;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -137,8 +138,64 @@
   html {
     @apply font-sans scroll-smooth;
   }
+  h1, h2, h3 {
+    @apply font-heading font-bold;
+  }
   section[id] {
     scroll-margin-top: 8rem;
+  }
+}
+
+@layer components {
+  .header[data-hero-brand="true"] .header-brand-link {
+    transform: translate3d(max(-6px, calc(18.5px - 4.466vw)), 90px, 0) scale(3.8);
+    transform-origin: top left;
+    will-change: transform;
+  }
+
+  .hero-brand-lockup [data-hero-brand-descriptor] {
+    /* The PNG's visible ink ends 207px before the bottom of its 2172px-wide canvas. */
+    margin-top: calc(-9.53% + 5px);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    font-synthesis: none;
+  }
+
+  .hero-title--cyrillic {
+    font-family: var(--font-body);
+    font-size: clamp(1.55rem, 2.7vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.08;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .header[data-hero-brand="true"] .header-brand-link {
+    transform: translate3d(max(-22px, calc((100vw - 600px) / 2 - 50px)), 119px, 0) scale(3.3);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header[data-hero-brand="true"] .header-brand-link {
+    transform: translate3d(calc((100vw - 600px) / 2 - 50px), 119px, 0) scale(3.3);
+  }
+}
+
+@media (max-width: 359px) {
+  .header[data-hero-brand="true"] .header-brand-link {
+    transform: translate3d(4px, 90px, 0) scale(3.3);
+  }
+}
+
+@media (min-width: 1024px) {
+  .header[data-hero-brand="true"] .header-brand-link {
+    transform: translate3d(-22px, 132px, 0) scale(2.61);
   }
 }
 
@@ -198,25 +255,64 @@
   transform-origin: center;
   transform: scale(1);
   backface-visibility: hidden;
-  transition: transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+  transition: transform 240ms ease;
 }
 
 .practice-area-image-muted {
   filter: grayscale(1);
   opacity: 1;
   transition:
-    opacity 650ms ease,
-    transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+    opacity 240ms ease,
+    transform 240ms ease;
 }
 
-.practice-area-card:hover .practice-area-image {
-  transform: scale(1.12);
+.practice-area-card:hover .practice-area-image,
+.practice-area-card:focus-visible .practice-area-image {
+  transform: scale(1.02);
 }
 
-.practice-area-card:hover .practice-area-image-muted {
+.practice-area-card:hover .practice-area-image-muted,
+.practice-area-card:focus-visible .practice-area-image-muted {
   opacity: 0;
+}
+
+.practice-area-arrow {
+  transition: transform 220ms ease;
+}
+
+.practice-area-card:hover .practice-area-arrow,
+.practice-area-card:focus-visible .practice-area-arrow {
+  transform: translate(3px, -3px);
+}
+
+.why-choose-wordmark {
+  /* Trim only the transparent canvas around the original 2172 × 724 PNG. */
+  --logo-canvas-height: clamp(5rem, 7.5vw, 6.5rem);
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: calc(var(--logo-canvas-height) * 2.718);
+  height: calc(var(--logo-canvas-height) * 0.420);
+  overflow: hidden;
+  transform: translateY(0.03em);
+}
+
+.why-choose-wordmark-image {
+  position: absolute;
+  top: calc(var(--logo-canvas-height) * -0.291);
+  left: calc(var(--logo-canvas-height) * -0.138);
+  width: calc(var(--logo-canvas-height) * 3);
+  height: var(--logo-canvas-height);
+  max-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .practice-area-image,
+  .practice-area-image-muted,
+  .practice-area-arrow {
+    transition: none;
+    transform: none;
+  }
 }
 
 .why-choose-card-image {
@@ -246,6 +342,10 @@
 @media (max-width: 767px) {
   section:not(.faq) {
     text-align: center;
+  }
+
+  section.hero .hero-photo-content {
+    text-align: left;
   }
 
   section:not(.faq) :where(.practice-area-card, .practice-area-card *, .why-choose-card, .why-choose-card *) {

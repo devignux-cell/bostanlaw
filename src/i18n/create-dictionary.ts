@@ -1,11 +1,14 @@
 import { homepageContentByLanguage } from "@/data/homepage";
 import { practiceAreasByLanguage } from "@/data/practiceAreas";
-import type { Dictionary, LegalCopy, ResourceCopy, UiCopy } from "@/i18n/types";
+import { practiceAreaDetailsByLocale } from "@/data/practiceAreaDetails";
+import type { Dictionary, LegalCopy, UiCopy } from "@/i18n/types";
+import type { Locale } from "@/i18n/config";
 import type { HeroContent, HeroPhotoContent, LegalMatterContent } from "@/types/homepage";
 import type { Faq } from "@/types/faq";
 import type { TeamCopy } from "@/i18n/types";
 
 interface TranslationInput {
+  locale: Locale;
   ui: UiCopy;
   hero: HeroContent;
   heroPhoto: HeroPhotoContent;
@@ -14,7 +17,6 @@ interface TranslationInput {
   practiceAreas: { name: string; description: string }[];
   faqs: Faq[];
   team: TeamCopy;
-  resource: ResourceCopy;
   legal: LegalCopy;
   seo: Dictionary["seo"];
 }
@@ -32,10 +34,12 @@ export function createDictionary(input: TranslationInput): Dictionary {
       legalMatter: input.legalMatter,
       whyChoose: input.whyChoose.map((item, index) => ({ ...item, image: homepageContentByLanguage.en.whyChoose[index].image })),
     },
-    practiceAreas: input.practiceAreas.map((item, index) => ({ ...item, image: practiceAreasByLanguage.en[index].image })),
+    practiceAreas: input.practiceAreas.map((item, index) => {
+      const source = practiceAreasByLanguage.en[index];
+      return { ...item, id: source.id, image: source.image, details: practiceAreaDetailsByLocale[input.locale][source.id] };
+    }),
     faqs: input.faqs,
     team: input.team,
-    resource: input.resource,
     legal: input.legal,
     seo: input.seo,
   };

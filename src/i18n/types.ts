@@ -8,6 +8,7 @@ export interface UiCopy {
   footer: { copyrightLabel: string };
   hero: { callNowFree: string; callNow: string; yes: string; no: string; portraitAlt: string };
   practiceAreas: { heading: string; subheading: string; ctaIntro: string; ctaStrong: string; ctaLabel: string };
+  practiceAreaDialog: { learnMore: string; eyebrow: string; whatToKnow: string; close: string; disclaimer: string };
   whyChoose: { headingLead: string; subheading: string };
   faq: { heading: string };
   findUs: { headingLead: string; headingStrong: string; mapTitle: string; viewMapsAria: string; directionsAria: string };
@@ -26,27 +27,8 @@ export interface Dictionary {
   practiceAreas: PracticeArea[];
   faqs: Faq[];
   team: TeamCopy;
-  resource: ResourceCopy;
   legal: LegalCopy;
   seo: { title: string; description: string; openGraphTitle: string; openGraphDescription: string; priceRange: string; imageAlt: string };
-}
-
-export interface ResourceCopy {
-  heading: string;
-  description: string;
-  actionLabel: string;
-  modalTitle: string;
-  originalEnglish: string;
-  englishOnlyNotice: string;
-  iframeTitle: string;
-  previewLabel: string;
-  pageLabel: string;
-  zoomIn: string;
-  zoomOut: string;
-  mobilePrompt: string;
-  openDocument: string;
-  downloadPdf: string;
-  close: string;
 }
 
 export interface LegalCopy {

@@ -1,8 +1,8 @@
 import type { SiteConfig } from "@/types/site";
 
 export const siteConfig: SiteConfig = {
-  name: "BoStan Law",
-  shortName: "BoStan Law",
+  name: "BOSTAN LAW",
+  shortName: "BOSTAN LAW",
   description:
     "Personal injury attorney serving Boston, MA. Free consultation. No fee unless we win.",
   // Canonical production origin for localized metadata and sitemap entries.

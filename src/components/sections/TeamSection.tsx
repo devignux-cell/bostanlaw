@@ -10,10 +10,10 @@ export function TeamSection({ copy }: { copy: TeamCopy }) {
     <section id="team" aria-labelledby="team-heading" className="border-b border-line bg-white">
       <div className="mx-auto max-w-[1200px] px-7 py-22">
         <TeamReveal className="mb-12 text-center sm:mb-16 sm:text-left">
-          <h2 id="team-heading" className="m-0 text-[clamp(34px,4.5vw,50px)] leading-[1.05] font-black tracking-[-0.02em] text-ink">
+          <h2 id="team-heading" className="m-0 text-[clamp(34px,4.5vw,52px)] leading-[1.1] text-ink">
             {copy.heading}
           </h2>
-          <p className="mx-auto mt-4 max-w-[34rem] text-lg font-medium leading-[1.5] text-subtle-fg sm:mx-0 sm:max-w-none sm:text-xl">{copy.subtitle}</p>
+          <p className="mx-auto mt-4 max-w-[34rem] text-lg leading-[1.5] text-subtle-fg sm:mx-0 sm:max-w-none sm:text-xl">{copy.subtitle}</p>
         </TeamReveal>
 
         <article aria-labelledby="stan-heading" className="text-left">
@@ -29,7 +29,7 @@ export function TeamSection({ copy }: { copy: TeamCopy }) {
               />
             </TeamReveal>
             <div className="min-w-0 lg:pt-2">
-              <h3 id="stan-heading" className="m-0 text-[clamp(29px,3.3vw,42px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-ink">
+              <h3 id="stan-heading" className="m-0 text-[clamp(30px,3.3vw,42px)] leading-[1.15] text-ink">
                 {copy.stan.name}
               </h3>
               <p className="mt-3 mb-7 text-[15px] font-bold leading-[1.5] tracking-[0.01em] text-brand sm:text-base">
@@ -48,7 +48,7 @@ export function TeamSection({ copy }: { copy: TeamCopy }) {
         <article aria-labelledby="paulina-heading" className="mt-20 border-t border-line pt-14 text-left sm:mt-24 sm:pt-16">
           <TeamReveal className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
             <div>
-              <h3 id="paulina-heading" className="m-0 text-[clamp(29px,3.3vw,42px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-ink">
+              <h3 id="paulina-heading" className="m-0 text-[clamp(30px,3.3vw,42px)] leading-[1.15] text-ink">
                 {copy.paulina.name}
               </h3>
               <p className="mt-3 text-[15px] font-bold leading-[1.5] tracking-[0.01em] text-brand sm:text-base">

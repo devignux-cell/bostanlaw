@@ -14,16 +14,17 @@ export function Footer() {
     <footer className="footer border-t border-line bg-white">
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-5 px-7 pt-2">
         <Image
-          src="/optimized/bostanlawlogo.webp"
+          src="/bostanlawmorespacelogo.png"
           alt={siteConfig.name}
-          width={512}
-          height={341}
-          className="h-18 w-auto"
+          width={2172}
+          height={724}
+          sizes="144px"
+          className="h-12 w-auto"
         />
         <div className="flex flex-wrap items-center gap-6 text-sm text-muted-fg">
           <a
             href={toTelHref(siteConfig.phone)}
-            className="font-bold text-ink"
+            className="font-medium text-ink"
           >
             {siteConfig.phone}
           </a>

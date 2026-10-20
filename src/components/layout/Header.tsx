@@ -9,8 +9,11 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { legalDisclaimerPath, localeOptions, localePath, type Locale } from "@/i18n/config";
 import { siteConfig } from "@/data/site";
 import { toTelHref } from "@/lib/utils";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 
 const SCROLL_THRESHOLD = 120;
+// Alpha bounds of the original 2172px logo canvas start at x=97.
+const HERO_LOGO_LEFT_INSET = 97 / 2172;
 
 function saveLanguagePreference(locale: Locale) {
   document.cookie = `NEXT_LOCALE=${locale}; Max-Age=31536000; Path=/; SameSite=Lax`;
@@ -61,7 +64,7 @@ function LanguageSwitcher({ locale }: { locale: Locale }) {
         aria-expanded={open}
         aria-controls="site-language-options"
         onClick={() => setOpen((value) => !value)}
-        className="flex min-h-11 items-center gap-1 rounded-full px-1.5 text-xs font-bold transition-[background-color] hover:bg-white/70 focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none sm:gap-1.5 sm:px-2 sm:text-sm"
+        className="flex min-h-11 items-center gap-1 rounded-full px-1.5 text-xs font-semibold transition-[background-color] hover:bg-white/70 focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none sm:gap-1.5 sm:px-2 sm:text-sm"
       >
         <Globe size={18} weight="regular" aria-hidden="true" />
         <span>{locale.toUpperCase()}</span>
@@ -81,7 +84,7 @@ function LanguageSwitcher({ locale }: { locale: Locale }) {
               lang={option.code}
               aria-current={option.code === locale ? "page" : undefined}
               onClick={(event) => handleChoose(event, option.code)}
-              className="flex min-h-11 items-center gap-3 rounded-[8px] px-3 text-sm font-bold text-ink transition-[background-color,color] hover:bg-cream hover:text-brand focus-visible:bg-cream focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none"
+              className="flex min-h-11 items-center gap-3 rounded-[8px] px-3 text-sm font-semibold text-ink transition-[background-color,color] hover:bg-cream hover:text-brand focus-visible:bg-cream focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none"
             >
               <Image src={option.flag} alt="" width={24} height={16} className="h-4 w-6 rounded-[2px] object-cover" />
               <span className="flex-1">{option.label}</span>
@@ -96,10 +99,80 @@ function LanguageSwitcher({ locale }: { locale: Locale }) {
 
 export function Header() {
   const headerRef = useRef<HTMLElement>(null);
-  const { language, ui } = useLanguage();
+  const brandBaseRef = useRef<HTMLDivElement>(null);
+  const brandLinkRef = useRef<HTMLAnchorElement>(null);
+  const { dictionary, language, ui } = useLanguage();
   const pathname = usePathname();
   const onLegalPage = pathname.endsWith("/legal-disclaimer");
   const homeHref = localePath(language);
+  const hasHeroBrand = pathname === homeHref && dictionary.homepage.heroVariant === "photo";
+
+  useGSAP(() => {
+    const base = brandBaseRef.current;
+    const link = brandLinkRef.current;
+    const slot = document.querySelector<HTMLElement>("[data-hero-brand-slot]");
+    const descriptor = document.querySelector<HTMLElement>("[data-hero-brand-descriptor]");
+    if (!hasHeroBrand || !base || !link || !slot) return;
+
+    const measure = () => {
+      const compact = base.getBoundingClientRect();
+      const expanded = slot.getBoundingClientRect();
+      return {
+        x: expanded.left - compact.left - expanded.width * HERO_LOGO_LEFT_INSET,
+        y: expanded.top + window.scrollY - compact.top,
+        scale: expanded.width / compact.width,
+      };
+    };
+
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      gsap.fromTo(
+        link,
+        {
+          x: () => measure().x,
+          y: () => measure().y,
+          scale: () => measure().scale,
+          transformOrigin: "top left",
+        },
+        {
+          x: 0,
+          y: 0,
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            start: 0,
+            end: SCROLL_THRESHOLD,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        },
+      );
+      if (descriptor) {
+        gsap.fromTo(
+          descriptor,
+          { autoAlpha: 1, y: 0 },
+          {
+            autoAlpha: 0,
+            y: -8,
+            ease: "none",
+            scrollTrigger: { start: 0, end: SCROLL_THRESHOLD * 0.75, scrub: true },
+          },
+        );
+      }
+    });
+    media.add("(prefers-reduced-motion: reduce)", () => {
+      const update = () => {
+        const expanded = window.scrollY < SCROLL_THRESHOLD / 2;
+        const geometry = expanded ? measure() : { x: 0, y: 0, scale: 1 };
+        gsap.set(link, { ...geometry, transformOrigin: "top left" });
+        if (descriptor) gsap.set(descriptor, { autoAlpha: expanded ? 1 : 0, y: 0 });
+      };
+      ScrollTrigger.create({ start: 0, end: SCROLL_THRESHOLD, onUpdate: update, onRefresh: update });
+      update();
+    });
+
+    return () => media.revert();
+  }, { dependencies: [hasHeroBrand], revertOnUpdate: true });
 
   useEffect(() => {
     let frame = 0;
@@ -128,19 +201,22 @@ export function Header() {
   return (
     <header
       ref={headerRef}
+      data-hero-brand={hasHeroBrand ? "true" : undefined}
       className="header fixed inset-x-0 top-0 z-50 border-b"
       style={{ backgroundColor: "rgb(255 255 255 / 0)", borderColor: "rgb(236 236 232 / 0)", backdropFilter: "blur(0px)", WebkitBackdropFilter: "blur(0px)" }}
     >
       <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between gap-1 px-3 sm:h-28 sm:gap-4 sm:px-7 lg:h-32">
-        <a href={onLegalPage ? homeHref : "#top"} className="flex w-[clamp(4.5rem,22vw,8rem)] shrink-0 items-center sm:w-[150px] lg:w-[190px]">
-          <Image src="/optimized/bostanlawlogo.webp" alt={siteConfig.name} width={512} height={341} className="h-auto w-full" priority />
-        </a>
+        <div ref={brandBaseRef} className="w-[clamp(5rem,22vw,8rem)] shrink-0 sm:w-[150px] lg:w-[190px]">
+          <a ref={brandLinkRef} href={onLegalPage ? homeHref : "#top"} className="header-brand-link flex w-full items-center">
+            <Image src="/bostanlawmorespacelogo.png" alt={siteConfig.name} width={2172} height={724} sizes="(min-width: 640px) 360px, 80vw" className="h-auto w-full" loading="eager" fetchPriority="high" unoptimized />
+          </a>
+        </div>
         <div className="flex min-w-0 items-center gap-0.5 sm:gap-3 lg:gap-6">
           <LanguageSwitcher locale={language} />
           <a
             href={toTelHref(siteConfig.phone)}
             aria-label={`${ui.header.callAria} ${siteConfig.phone}`}
-            className="flex size-10 shrink-0 items-center justify-center rounded-full text-ink transition-[background-color,color] hover:bg-white/70 focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none md:size-auto md:gap-2 md:rounded-none md:text-base md:font-bold md:tracking-tight"
+            className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-lg px-2 py-2.5 text-ink transition-[background-color,color] duration-200 hover:bg-black/[0.035] focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none md:px-3.5 md:text-base md:font-semibold"
           >
             <Phone weight="fill" className="size-6 text-brand md:size-[18px]" />
             <span className="hidden whitespace-nowrap md:inline">{siteConfig.phone}</span>
@@ -149,7 +225,7 @@ export function Header() {
             render={<a href={onLegalPage ? `${homeHref}#contact` : "#contact"}>{ui.header.consultation}</a>}
             nativeButton={false}
             size="lg"
-            className="h-auto min-h-11 max-w-[108px] rounded-[10px] px-2 py-1 text-center text-xs leading-tight font-bold whitespace-normal sm:max-w-none sm:px-5 sm:text-base"
+            className="h-auto min-h-11 max-w-[108px] rounded-[10px] px-2 py-1 text-center text-xs leading-tight font-semibold whitespace-normal sm:max-w-none sm:px-5 sm:text-base"
           />
         </div>
       </div>

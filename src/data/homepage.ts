@@ -12,6 +12,9 @@ export const homepageContentByLanguage: Record<"en" | "es", HomepageContent> = {
         "Free consultation. No fee unless we win. You focus on healing - we handle the rest.",
     },
     heroPhoto: {
+      brandDescriptor: "Injury Attorney",
+      primaryLine1: "Injured?",
+      primaryLine2: "CALL STAN",
       headlineLine1: "You focus on healing.",
       headlineLine2: "We'll handle the rest.",
       subhead:
@@ -70,6 +73,9 @@ export const homepageContentByLanguage: Record<"en" | "es", HomepageContent> = {
         "Consulta gratis. No cobramos honorarios a menos que ganemos. Usted se concentra en sanar - nosotros nos encargamos del resto.",
     },
     heroPhoto: {
+      brandDescriptor: "Abogado de lesiones personales",
+      primaryLine1: "¿Se lesionó?",
+      primaryLine2: "LLAME A STAN",
       headlineLine1: "Usted se concentra en sanar.",
       headlineLine2: "Nosotros nos encargamos del resto.",
       subhead:

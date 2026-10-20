@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import { join } from "node:path";
 
@@ -12,22 +12,30 @@ const pages = {
   ru: ["ru.html", "Главное — ваше здоровье."],
   fr: ["fr.html", "Concentrez-vous sur votre guérison."],
 };
+const primaryHeadlines = {
+  en: ["Injured?", "CALL STAN"],
+  es: ["¿Se lesionó?", "LLAME A STAN"],
+  kea: ["Bu fika feridu?", "TXOMA STAN"],
+  ht: ["Ou blese?", "RELE STAN"],
+  ru: ["Пострадали?", "ПОЗВОНИТЕ СТЭНУ"],
+  fr: ["Blessé ?", "APPELEZ STAN"],
+};
 const codes = Object.keys(pages);
 const teamCopy = {
-  en: ["Meet the Team", "Before founding Bostan Law"],
-  es: ["Conozca al equipo", "Antes de fundar Bostan Law"],
-  kea: ["Konxê nos ekipa", "Antis di funda Bostan Law"],
-  ht: ["Fè konesans ak ekip la", "Anvan li te fonde Bostan Law"],
-  ru: ["Наша команда", "До основания Bostan Law"],
-  fr: ["Rencontrez notre équipe", "Avant de fonder Bostan Law"],
+  en: ["Meet the Team", "Before founding BOSTAN LAW"],
+  es: ["Conozca al equipo", "Antes de fundar BOSTAN LAW"],
+  kea: ["Konxê nos ekipa", "Antis di funda BOSTAN LAW"],
+  ht: ["Fè konesans ak ekip la", "Anvan li te fonde BOSTAN LAW"],
+  ru: ["Наша команда", "До основания BOSTAN LAW"],
+  fr: ["Rencontrez notre équipe", "Avant de fonder BOSTAN LAW"],
 };
 const legalCopy = {
-  en: ["Injured in a Car Accident?", "Legal Disclaimer", "Submitting this form does not"],
-  es: ["¿Sufrió lesiones en un accidente de auto?", "Aviso legal", "Enviar este formulario no crea"],
-  kea: ["Bu fika feridu na un asidenti di karu?", "Avisu legal", "Manda es formuláriu ka ta kria"],
-  ht: ["Ou te blese nan yon aksidan machin?", "Avi legal", "Voye fòm sa a pa"],
-  ru: ["Пострадали в автомобильной аварии?", "Юридическая оговорка", "Отправка этой формы сама"],
-  fr: ["Blessé dans un accident de voiture ?", "Avertissement juridique", "L’envoi de ce formulaire ne crée"],
+  en: ["Legal Disclaimer", "Submitting this form does not"],
+  es: ["Aviso legal", "Enviar este formulario no crea"],
+  kea: ["Avisu legal", "Manda es formuláriu ka ta kria"],
+  ht: ["Avi legal", "Voye fòm sa a pa"],
+  ru: ["Юридическая оговорка", "Отправка этой формы сама"],
+  fr: ["Avertissement juridique", "L’envoi de ce formulaire ne crée"],
 };
 
 for (const [code, [file, hero]] of Object.entries(pages)) {
@@ -35,13 +43,15 @@ for (const [code, [file, hero]] of Object.entries(pages)) {
   const canonical = `${origin}${code === "en" ? "" : `/${code}`}`;
   assert.match(page, new RegExp(`<html[^>]+lang="${code}"`), `${code} html lang`);
   assert.ok(page.includes(hero), `${code} translated hero`);
+  for (const line of primaryHeadlines[code]) {
+    assert.ok(page.includes(line), `${code} primary hero message`);
+  }
   assert.ok(page.includes(teamCopy[code][0]), `${code} team heading`);
   assert.ok(page.includes(teamCopy[code][1]), `${code} full bio is server rendered`);
-  assert.ok(page.includes(legalCopy[code][0]), `${code} resource heading`);
-  assert.ok(page.includes(legalCopy[code][2]), `${code} contact warning`);
-  assert.ok(page.indexOf('id="areas"') < page.indexOf('id="accident-information"'), `${code} resource after practice areas`);
-  assert.ok(page.indexOf('id="accident-information"') < page.indexOf('class="why-choose-us'), `${code} resource before values`);
-  assert.ok(!page.includes('<iframe src="/documents/bostan-law-accident-information.pdf"'), `${code} PDF not loaded in initial HTML`);
+  assert.ok(page.includes(legalCopy[code][1]), `${code} contact warning`);
+  assert.ok(page.indexOf('id="areas"') < page.indexOf('class="why-choose-us'), `${code} values after practice areas`);
+  assert.ok(!page.includes('id="accident-information"'), `${code} obsolete resource section removed`);
+  assert.ok(!page.includes('bostan-law-accident-information.pdf'), `${code} obsolete PDF link removed`);
   assert.match(page, /aria-expanded="false" aria-controls="[^"]+" class="mt-5/);
   assert.match(page, /<div id="[^"]+" hidden="" class="mt-5 space-y-5">/);
   assert.ok(page.indexOf('class="why-choose-us') < page.indexOf('id="team"'), `${code} team after values`);
@@ -58,6 +68,8 @@ for (const [code, [file, hero]] of Object.entries(pages)) {
   const faq = graph.find((item) => item["@type"] === "FAQPage");
   assert.equal(legal.inLanguage, code);
   assert.equal(legal.knowsAbout.length, 6);
+  assert.equal(legal.hasOfferCatalog.itemListElement.length, 6);
+  assert.ok(legal.hasOfferCatalog.itemListElement.every((offer) => offer.itemOffered.name && offer.itemOffered.description), `${code} practice-area details in structured data`);
   assert.equal(legal.employee.length, 2);
   assert.equal(legal.founder["@id"], legal.employee[0]["@id"]);
   assert.ok(legal.employee.every((person) => person["@type"] === "Person" && person.jobTitle && person.description && person.inLanguage === code));
@@ -74,7 +86,7 @@ for (const [code, [file, hero]] of Object.entries(pages)) {
   const legalPage = readFileSync(join(dir, legalFile), "utf8");
   const legalUrl = `${origin}${code === "en" ? "" : `/${code}`}/legal-disclaimer`;
   assert.match(legalPage, new RegExp(`<html[^>]+lang="${code}"`), `${code} legal html lang`);
-  assert.ok(legalPage.includes(legalCopy[code][1]), `${code} legal heading`);
+  assert.ok(legalPage.includes(legalCopy[code][0]), `${code} legal heading`);
   assert.ok(legalPage.includes(`<link rel="canonical" href="${legalUrl}"`), `${code} legal canonical`);
   assert.ok(legalPage.includes(`href="${code === "en" ? "/" : `/${code}`}#contact"`), `${code} legal consultation returns home`);
   for (const alternate of [...codes, "x-default"]) {
@@ -91,9 +103,4 @@ for (const code of codes) {
 }
 assert.equal((sitemap.match(/<loc>/g) ?? []).length, 12, "six home and six legal sitemap entries");
 assert.ok(!sitemap.includes(`<loc>${origin}/en</loc>`), "no duplicate English route");
-const documentDir = join(process.cwd(), "public/documents");
-assert.deepEqual(readdirSync(documentDir).filter((file) => file.endsWith(".pdf")), ["bostan-law-accident-information.pdf"], "one shared English PDF");
-for (const page of [1, 2]) {
-  assert.ok(existsSync(join(documentDir, `accident-letter-page-${page}.webp`)), `preview page ${page} exists`);
-}
-console.log("Localized home and legal HTML, SEO, JSON-LD, sitemap, and PDF asset verified for six languages.");
+console.log("Localized home and legal HTML, practice-area details, SEO, JSON-LD, and sitemap verified for six languages.");

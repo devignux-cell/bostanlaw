@@ -16,7 +16,7 @@ export function FindUsSection() {
   return (
     <section ref={ref} className="find-us bg-white">
       <div className="mx-auto max-w-[1200px] px-7 py-22">
-        <h2 className="m-0 mb-9.5 text-center text-[clamp(24px,3vw,28px)] tracking-[-0.02em]">
+        <h2 className="m-0 mb-9.5 text-center text-[clamp(30px,3vw,36px)] leading-[1.15]">
           {ui.findUs.headingLead} <span className="font-bold">{ui.findUs.headingStrong}</span>
         </h2>
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[20px] sm:aspect-[16/9]">
