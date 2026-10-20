@@ -14,7 +14,7 @@ export function WhyChooseUs() {
     <section className="why-choose-us border-y border-line bg-cream">
       <div className="mx-auto max-w-[1200px] px-7 py-22">
         <div className="mb-17 flex flex-col gap-2 text-center sm:text-left">
-          <h2 className="m-0 flex flex-col items-center gap-x-4 gap-y-1 text-[clamp(34px,4.5vw,52px)] leading-[1.1] sm:flex-row sm:flex-wrap sm:justify-start">
+          <h2 className="m-0 flex flex-col items-center gap-x-2 gap-y-1 text-[clamp(34px,4.5vw,52px)] leading-[1.1] sm:flex-row sm:flex-wrap sm:justify-start">
             <span>{ui.whyChoose.headingLead}</span>
             <span className="why-choose-wordmark">
               <Image

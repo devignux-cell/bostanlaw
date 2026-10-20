@@ -2,10 +2,11 @@
 
 import { Dialog } from "@base-ui/react/dialog";
 import { X } from "@phosphor-icons/react/dist/ssr";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { legalDisclaimerPath, type Locale } from "@/i18n/config";
 import type { UiCopy } from "@/i18n/types";
 import type { PracticeArea } from "@/types/practiceArea";
+import { cn } from "@/lib/utils";
 
 interface PracticeAreaDialogProps {
   area: PracticeArea;
@@ -58,9 +59,9 @@ export function PracticeAreaDialog({ area, language, ui, legalHeading, onConsult
         </div>
 
         <div className="shrink-0 border-t border-line bg-white px-6 pt-4 pb-[max(16px,env(safe-area-inset-bottom))] sm:px-9 sm:py-5">
-          <Button type="button" onClick={onConsultation} className="h-auto min-h-12 w-full rounded-md px-6 py-3.5 text-base font-semibold sm:w-auto sm:min-w-[220px]">
+          <Dialog.Close onClick={onConsultation} className={cn(buttonVariants(), "h-auto min-h-12 w-full rounded-md px-6 py-3.5 text-base font-semibold sm:w-auto sm:min-w-[220px]")}>
             {ui.header.consultation}
-          </Button>
+          </Dialog.Close>
         </div>
       </Dialog.Popup>
     </Dialog.Portal>

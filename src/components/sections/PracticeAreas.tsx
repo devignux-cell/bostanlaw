@@ -25,14 +25,26 @@ export function PracticeAreas() {
     if (open || !pendingConsultation.current) return;
     pendingConsultation.current = false;
     const contact = document.getElementById("contact");
-    const firstField = document.getElementById("name");
     if (!contact) return;
+    let focused = false;
+    let fallbackTimer = 0;
+    const focusName = () => {
+      if (focused) return;
+      focused = true;
+      document.removeEventListener("scrollend", focusName);
+      window.clearTimeout(fallbackTimer);
+      document.getElementById("name")?.focus({ preventScroll: true });
+    };
+    document.addEventListener("scrollend", focusName, { once: true });
+    fallbackTimer = window.setTimeout(focusName, 1800);
     requestAnimationFrame(() => {
-      firstField?.focus({ preventScroll: true });
       contact.scrollIntoView({
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
         block: "start",
       });
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        requestAnimationFrame(focusName);
+      }
     });
   }
 
@@ -51,49 +63,52 @@ export function PracticeAreas() {
         <Dialog.Root<PracticeArea>
           open={activePracticeAreaId !== null}
           triggerId={activePracticeAreaId ? `practice-${activePracticeAreaId}` : null}
-          onOpenChange={(open) => { if (!open) setActivePracticeAreaId(null); }}
+          onOpenChange={(open) => {
+            if (!open) setActivePracticeAreaId(null);
+          }}
           onOpenChangeComplete={finishClosing}
         >
-          {({ payload }) => <>
-          <div ref={ref} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {practiceAreas.map((area) => (
-              <Dialog.Trigger
-                key={area.id}
-                id={`practice-${area.id}`}
-                payload={area}
-                onClick={() => openArea(area)}
-                className="practice-area-card relative min-h-[184px] w-full overflow-hidden rounded-[10px] text-left shadow-none transition-[box-shadow] duration-200 hover:shadow-[0_8px_24px_rgba(0,0,0,0.18)] focus-visible:ring-3 focus-visible:ring-brand focus-visible:ring-offset-3 focus-visible:outline-none"
-              >
-                <Image src={area.image} alt="" fill className="practice-area-image object-cover" sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw" />
-                <Image src={area.image} alt="" fill className="practice-area-image practice-area-image-muted object-cover" sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw" />
-                <span className="absolute inset-0" style={{ backgroundImage: "linear-gradient(91.16deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.43) 100%)" }} />
-                <span className="relative flex h-full flex-col justify-between gap-4 px-6 py-6">
-                  <span className="block">
-                    <span className="block font-heading text-[clamp(24px,2.5vw,28px)] leading-[1.2] font-semibold text-white">{area.name}</span>
-                    <span className="mt-2 block w-full max-w-full text-[15px] leading-[1.5] text-[#E6E6E6]">{area.description}</span>
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 self-start text-[13px] leading-none font-semibold text-white/95">
-                    {ui.practiceAreaDialog.learnMore}
-                    <ArrowUpRight size={16} className="practice-area-arrow" aria-hidden="true" />
-                  </span>
-                </span>
-              </Dialog.Trigger>
-            ))}
-          </div>
+          {({ payload }) => (
+            <>
+              <div ref={ref} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {practiceAreas.map((area) => (
+                  <Dialog.Trigger
+                    key={area.id}
+                    id={`practice-${area.id}`}
+                    payload={area}
+                    onClick={() => openArea(area)}
+                    className="practice-area-card relative min-h-[184px] w-full overflow-hidden rounded-[10px] text-left shadow-none transition-[box-shadow] duration-200 hover:shadow-[0_8px_24px_rgba(0,0,0,0.18)] focus-visible:ring-3 focus-visible:ring-brand focus-visible:ring-offset-3 focus-visible:outline-none motion-reduce:transition-none"
+                  >
+                    <Image src={area.image} alt="" fill className="practice-area-image object-cover" sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw" />
+                    <Image src={area.image} alt="" fill className="practice-area-image practice-area-image-muted object-cover" sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw" />
+                    <span className="absolute inset-0" style={{ backgroundImage: "linear-gradient(91.16deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.43) 100%)" }} />
+                    <span className="relative flex h-full flex-col justify-between gap-4 px-6 py-6">
+                      <span className="block">
+                        <span className="block font-heading text-[clamp(24px,2.5vw,28px)] leading-[1.2] font-semibold text-white">{area.name}</span>
+                        <span className="mt-2 block w-full max-w-full text-[15px] leading-[1.5] text-[#E6E6E6]">{area.description}</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 self-start text-[13px] leading-none font-semibold text-white/95">
+                        {ui.practiceAreaDialog.learnMore}
+                        <ArrowUpRight size={16} className="practice-area-arrow" aria-hidden="true" />
+                      </span>
+                    </span>
+                  </Dialog.Trigger>
+                ))}
+              </div>
 
-          {payload && (
-            <PracticeAreaDialog
-              area={payload}
-              language={language}
-              ui={ui}
-              legalHeading={dictionary.legal.heading}
-              onConsultation={() => {
-                pendingConsultation.current = true;
-                setActivePracticeAreaId(null);
-              }}
-            />
+              {payload && (
+                <PracticeAreaDialog
+                  area={payload}
+                  language={language}
+                  ui={ui}
+                  legalHeading={dictionary.legal.heading}
+                  onConsultation={() => {
+                    pendingConsultation.current = true;
+                  }}
+                />
+              )}
+            </>
           )}
-          </>}
         </Dialog.Root>
 
         <div className="mt-12 flex flex-col items-center gap-5 text-center">

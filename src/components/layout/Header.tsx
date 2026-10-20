@@ -216,7 +216,7 @@ export function Header() {
           <a
             href={toTelHref(siteConfig.phone)}
             aria-label={`${ui.header.callAria} ${siteConfig.phone}`}
-            className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-lg px-2 py-2.5 text-ink transition-[background-color,color] duration-200 hover:bg-black/[0.035] focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none md:px-3.5 md:text-base md:font-semibold"
+            className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 rounded-lg px-2 py-2.5 text-ink transition-[background-color,color] duration-200 hover:bg-black/[0.035] focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none motion-reduce:transition-none md:px-3.5 md:text-base md:font-semibold"
           >
             <Phone weight="fill" className="size-6 text-brand md:size-[18px]" />
             <span className="hidden whitespace-nowrap md:inline">{siteConfig.phone}</span>

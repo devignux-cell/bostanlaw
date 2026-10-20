@@ -311,6 +311,12 @@
   .practice-area-image-muted,
   .practice-area-arrow {
     transition: none;
+  }
+
+  .practice-area-card:hover .practice-area-image,
+  .practice-area-card:focus-visible .practice-area-image,
+  .practice-area-card:hover .practice-area-arrow,
+  .practice-area-card:focus-visible .practice-area-arrow {
     transform: none;
   }
 }
