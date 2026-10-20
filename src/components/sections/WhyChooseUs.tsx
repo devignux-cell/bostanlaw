@@ -14,17 +14,20 @@ export function WhyChooseUs() {
     <section className="why-choose-us border-y border-line bg-cream">
       <div className="mx-auto max-w-[1200px] px-7 py-22">
         <div className="mb-17 flex flex-col gap-2 text-center sm:text-left">
-          <h2 className="m-0 flex flex-col items-center gap-x-3 gap-y-2 text-[clamp(30px,4.5vw,50px)] leading-[1.05] font-black tracking-[-0.02em] sm:flex-row sm:flex-wrap sm:justify-start">
+          <h2 className="m-0 flex flex-col items-center gap-x-4 gap-y-1 text-[clamp(34px,4.5vw,52px)] leading-[1.1] sm:flex-row sm:flex-wrap sm:justify-start">
             <span>{ui.whyChoose.headingLead}</span>
-            <Image
-              src="/optimized/bostanlawlogo-inline.webp"
-              alt={siteConfig.name}
-              width={441}
-              height={74}
-              className="h-[clamp(1.75rem,4vw,2.75rem)] w-auto"
-            />
+            <span className="why-choose-wordmark">
+              <Image
+                src="/bostanlawmorespacelogo.png"
+                alt={siteConfig.name}
+                width={2172}
+                height={724}
+                className="why-choose-wordmark-image"
+                unoptimized
+              />
+            </span>
           </h2>
-          <p className="mx-auto max-w-[30rem] text-xl leading-[1.5] font-medium text-subtle-fg sm:mx-0 sm:max-w-none">
+          <p className="mx-auto max-w-[30rem] text-xl leading-[1.5] text-subtle-fg sm:mx-0 sm:max-w-none">
             {ui.whyChoose.subheading}
           </p>
         </div>
@@ -49,10 +52,10 @@ export function WhyChooseUs() {
               <div className="why-choose-card-shade absolute inset-0 bg-[rgba(0,0,0,0.34)]" />
               <div className="why-choose-card-gradient absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.86)] via-[rgba(0,0,0,0.58)] to-[rgba(0,0,0,0.44)]" />
               <div className="relative flex h-full flex-col justify-start px-7 pt-12 pb-10">
-                <p className="m-0 text-[clamp(23px,2.5vw,32px)] leading-[1.1] font-extrabold tracking-[-0.01em] break-words text-white">
+                <p className="m-0 font-heading text-[clamp(26px,2.5vw,32px)] leading-[1.15] font-semibold break-words text-white">
                   {item.name}
                 </p>
-                <p className="mt-4 max-w-[30rem] text-[15px] leading-[1.55] font-medium text-white/82">
+                <p className="mt-4 max-w-[30rem] text-[15px] leading-[1.55] text-white/82">
                   {item.body}
                 </p>
               </div>

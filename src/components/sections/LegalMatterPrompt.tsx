@@ -148,16 +148,16 @@ export function LegalMatterPrompt() {
     <section ref={sectionRef} id="matter" className="legal-matter relative overflow-hidden bg-ink text-white">
       <LegalMatterWatermark parallaxRef={backgroundRef} />
       <div ref={foregroundRef} className="relative z-10 mx-auto max-w-[1000px] px-7 pt-18 pb-24 text-center">
-        <h2 className="m-0 text-[clamp(32px,5vw,56px)] leading-[1.05] font-black tracking-[-0.02em]">
+        <h2 className="m-0 text-[clamp(34px,5vw,56px)] leading-[1.1]">
           {legalMatter.heading}
         </h2>
-        <p className="mt-4 mb-16 text-lg font-medium text-[#B9B9B9]">
+        <p className="mt-4 mb-16 text-lg text-[#B9B9B9]">
           {legalMatter.subheading}
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Button
             onClick={() => choose("yes")}
-            className={`h-auto min-w-[150px] rounded-lg border-[1.5px] border-brand px-[34px] py-[18px] text-lg font-extrabold ${
+            className={`h-auto min-w-[150px] rounded-lg border-[1.5px] border-brand px-[34px] py-[18px] text-lg font-semibold ${
               matter === "yes" ? "bg-brand text-white" : "bg-[rgba(255,0,0,0.19)] text-white hover:brightness-110"
             }`}
           >
@@ -166,7 +166,7 @@ export function LegalMatterPrompt() {
           <Button
             onClick={() => choose("no")}
             variant="outline"
-            className={`h-auto min-w-[150px] rounded-lg border-[1.5px] border-[#4A4A4A] px-[34px] py-[18px] text-lg font-extrabold text-white hover:border-[#888] ${
+            className={`h-auto min-w-[150px] rounded-lg border-[1.5px] border-[#4A4A4A] px-[34px] py-[18px] text-lg font-semibold text-white hover:border-[#888] ${
               matter === "no" ? "bg-[#2A2A2A]" : "bg-[rgba(255,255,255,0.10)]"
             }`}
           >

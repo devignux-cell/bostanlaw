@@ -23,6 +23,13 @@ export const uiContent = {
       ctaStrong: "Let's Talk.",
       ctaLabel: "Get your free consultation",
     },
+    practiceAreaDialog: {
+      learnMore: "Learn more",
+      eyebrow: "Practice area",
+      whatToKnow: "What you should know",
+      close: "Close details",
+      disclaimer: "General information, not legal advice.",
+    },
     whyChoose: {
       headingLead: "Why Clients Trust",
       subheading: "Serving individuals and families throughout Boston.",
@@ -33,7 +40,7 @@ export const uiContent = {
     findUs: {
       headingLead: "Where to",
       headingStrong: "Find us",
-      mapTitle: "BoStan Law location",
+      mapTitle: "BOSTAN LAW location",
       viewMapsAria: "View on Google Maps",
       directionsAria: "Get directions",
     },
@@ -84,6 +91,13 @@ export const uiContent = {
       ctaStrong: "hablemos.",
       ctaLabel: "Obtenga su consulta gratis",
     },
+    practiceAreaDialog: {
+      learnMore: "Más información",
+      eyebrow: "Área de práctica",
+      whatToKnow: "Lo que conviene saber",
+      close: "Cerrar detalles",
+      disclaimer: "Información general, no asesoramiento jurídico.",
+    },
     whyChoose: {
       headingLead: "Por que los clientes confian en",
       subheading: "Sirviendo a personas y familias en todo Boston.",
@@ -94,7 +108,7 @@ export const uiContent = {
     findUs: {
       headingLead: "Donde",
       headingStrong: "encontrarnos",
-      mapTitle: "Ubicacion de BoStan Law",
+      mapTitle: "Ubicacion de BOSTAN LAW",
       viewMapsAria: "Ver en Google Maps",
       directionsAria: "Obtener direcciones",
     },

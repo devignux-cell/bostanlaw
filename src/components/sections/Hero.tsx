@@ -26,7 +26,7 @@ function Eyebrow() {
 function Headline({ content, className }: { content: HeroContent; className?: string }) {
   return (
     <h1
-      className={`m-0 font-black tracking-[-0.03em] text-[clamp(56px,10vw,132px)] leading-[0.92] ${className ?? ""}`}
+      className={`m-0 text-[clamp(48px,8vw,96px)] leading-[1.02] ${className ?? ""}`}
     >
       {content.headlineLead}
       <br />
@@ -45,7 +45,7 @@ function PhoneDisplay({ size = "large" }: { size?: "large" | "medium" }) {
         {ui.hero.callNowFree}
       </div>
       <div
-        className={`font-extrabold tracking-[-0.02em] leading-none ${
+        className={`font-semibold leading-none ${
           size === "large"
             ? "text-[clamp(34px,5.5vw,60px)]"
             : "text-[clamp(32px,4.5vw,52px)]"
@@ -96,7 +96,7 @@ function HeroStatement() {
       <div className="max-w-[760px]">
         <Eyebrow />
         <Headline content={hero} />
-        <p className="mt-7 max-w-[520px] text-[clamp(18px,2.4vw,22px)] leading-[1.5] font-medium text-[#4A4A4A]">
+        <p className="mt-7 max-w-[520px] text-[clamp(18px,2.4vw,22px)] leading-[1.5] text-[#4A4A4A]">
           {hero.subhead}
         </p>
       </div>
@@ -120,7 +120,7 @@ function HeroSplit() {
           content={hero}
           className="text-[clamp(48px,7vw,96px)]"
         />
-        <p className="mt-6 max-w-[440px] text-xl leading-[1.5] font-medium text-[#4A4A4A]">
+        <p className="mt-6 max-w-[440px] text-xl leading-[1.5] text-[#4A4A4A]">
           {hero.subhead}
         </p>
         <div className="mt-7">
@@ -128,7 +128,7 @@ function HeroSplit() {
         </div>
       </div>
       <div className="rounded-xl bg-ink px-[34px] py-10 text-white">
-        <div className="mb-2 text-2xl leading-[1.2] font-extrabold tracking-[-0.02em]">
+        <div className="mb-2 font-heading text-2xl leading-[1.2] font-bold">
           {legalMatter.heading}
         </div>
         <p className="mb-6 text-[15px] leading-[1.5] text-[#B9B9B9]">
@@ -138,13 +138,13 @@ function HeroSplit() {
           <Button
             render={<a href="#matter">{ui.hero.yes}</a>}
             nativeButton={false}
-            className="h-auto flex-1 rounded-lg py-[18px] text-lg font-extrabold"
+            className="h-auto flex-1 rounded-lg py-[18px] text-lg font-semibold"
           />
           <Button
             variant="outline"
             render={<a href="#matter">{ui.hero.no}</a>}
             nativeButton={false}
-            className="h-auto flex-1 rounded-lg border-[1.5px] border-[#444] bg-transparent py-[18px] text-lg font-extrabold text-white hover:bg-white/10"
+            className="h-auto flex-1 rounded-lg border-[1.5px] border-[#444] bg-transparent py-[18px] text-lg font-semibold text-white hover:bg-white/10"
           />
         </div>
       </div>
@@ -169,7 +169,7 @@ function HeroCentered() {
         {hero.eyebrow} · {siteConfig.location}
       </div>
       <Headline content={hero} className="text-center" />
-      <p className="mx-auto mt-6 max-w-[520px] text-[clamp(18px,2.2vw,22px)] leading-[1.5] font-medium text-[#4A4A4A]">
+      <p className="mx-auto mt-6 max-w-[520px] text-[clamp(18px,2.2vw,22px)] leading-[1.5] text-[#4A4A4A]">
         {hero.subhead}
       </p>
       <div className="mt-8 flex justify-center">
@@ -183,7 +183,7 @@ function HeroCentered() {
 }
 
 function HeroPhoto() {
-  const { dictionary } = useLanguage();
+  const { dictionary, language } = useLanguage();
   const { heroPhoto } = dictionary.homepage;
   const backgroundRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -249,45 +249,55 @@ function HeroPhoto() {
             "linear-gradient(264.57deg, rgba(255,185,185,0.058) 6%, rgba(255,255,255,0.672) 94%)",
         }}
       />
-      <div className="relative mx-auto flex max-w-[1200px] flex-col items-center gap-12 px-7 pt-[180px] lg:flex-row lg:items-start lg:justify-between lg:gap-10">
-        <div ref={contentRef} className="hero-photo-content min-w-0 w-full max-w-[600px] lg:pt-20 pb-16 lg:pb-[100px]">
-          <h1 className="text-[clamp(40px,6.5vw,54px)] leading-[1.05] font-black tracking-[-0.03em] wrap-anywhere text-[#333]">
-            {heroPhoto.headlineLine1}
-            <br />
-            <span className="text-brand">{heroPhoto.headlineLine2}</span>
-          </h1>
-          <p className="mt-5 max-w-[560px] text-lg leading-[1.5] font-medium text-[#333] sm:text-xl">
-            {heroPhoto.subhead}{" "}
-            <span className="font-bold italic">{heroPhoto.subheadEmphasis}</span>
-          </p>
-          <div className="mt-18 flex min-w-0 flex-wrap justify-center gap-4 lg:justify-start">
-            <Button
-              size="lg"
-              nativeButton={false}
-              className="h-auto min-w-0 w-full gap-2.5 rounded-md px-4 py-[17px] text-center text-[15px] whitespace-normal sm:w-auto sm:px-[30px] sm:text-[17px]"
-              render={
-                <a href="#contact">
-                  {heroPhoto.ctaPrimaryLabel} <ArrowRight size={18} />
-                </a>
-              }
-            />
-            <Button
-              size="lg"
-              variant="outline"
-              nativeButton={false}
-              className="h-auto min-w-0 w-full gap-2.5 rounded-md border-[1.5px] border-ink bg-transparent px-4 py-[17px] text-center text-[15px] whitespace-normal text-ink hover:bg-black/5 sm:w-auto sm:px-[30px] sm:text-[17px]"
-              render={
-                <a href={toTelHref(siteConfig.phone)}>
-                  <Phone weight="fill" size={18} /> {heroPhoto.ctaSecondaryLabel}
-                </a>
-              }
-            />
-          </div>
-          <div className="mt-10 flex items-center justify-center gap-3 text-center lg:justify-start lg:text-left">
-            <ShieldCheck size={20} className="shrink-0 text-[rgba(51,51,51,0.7)]" />
-            <p className="text-xs leading-[1.5] text-[rgba(51,51,51,0.7)]">
-              {heroPhoto.trustLine}
+      <div className="relative mx-auto flex max-w-[1200px] flex-col items-center gap-10 px-7 pt-[116px] sm:pt-[150px] lg:flex-row lg:items-start lg:justify-between lg:pt-[164px]">
+        <div className="hero-photo-content min-w-0 w-full max-w-[600px] pb-12 lg:pb-20">
+          <div className="hero-brand-lockup w-full max-w-[31rem]">
+            <div data-hero-brand-slot className="aspect-[3/1] w-full" aria-hidden="true" />
+            <p data-hero-brand-descriptor className="font-heading text-[clamp(18px,2vw,25px)] leading-none font-bold tracking-[0.01em] text-ink uppercase">
+              {heroPhoto.brandDescriptor}
             </p>
+          </div>
+          <div ref={contentRef}>
+            <h1 className={cn("hero-title mt-6 text-ink", language === "es" && "hero-title--spanish", language === "ru" && "hero-title--cyrillic")}>
+              <span>{heroPhoto.primaryLine1}</span>{" "}
+              <span className="text-brand">{heroPhoto.primaryLine2}</span>
+            </h1>
+            <p className="mt-5 max-w-[560px] text-[clamp(17px,1.6vw,20px)] leading-[1.35] font-medium text-[#333]">
+              {heroPhoto.headlineLine1} {heroPhoto.headlineLine2}
+            </p>
+            <p className="mt-2 max-w-[560px] text-[15px] leading-[1.5] text-[#333] sm:text-[17px]">
+              {heroPhoto.subhead}{" "}
+              <span className="font-semibold italic">{heroPhoto.subheadEmphasis}</span>
+            </p>
+            <div className="mt-7 flex min-w-0 flex-wrap justify-start gap-4">
+              <Button
+                size="lg"
+                nativeButton={false}
+                className="h-auto min-w-0 w-full gap-2.5 rounded-md px-4 py-[17px] text-center text-[15px] whitespace-normal sm:w-auto sm:px-[30px] sm:text-[17px]"
+                render={
+                  <a href="#contact">
+                    {heroPhoto.ctaPrimaryLabel} <ArrowRight size={18} />
+                  </a>
+                }
+              />
+              <Button
+                size="lg"
+                variant="outline"
+                nativeButton={false}
+                className="h-auto min-w-0 w-full gap-2.5 rounded-md border-[1.5px] border-ink bg-transparent px-4 py-[17px] text-center text-[15px] whitespace-normal text-ink hover:bg-black/5 sm:w-auto sm:px-[30px] sm:text-[17px]"
+                render={
+                  <a href={toTelHref(siteConfig.phone)}>
+                    <Phone weight="fill" size={18} /> {heroPhoto.ctaSecondaryLabel}
+                  </a>
+                }
+              />
+            </div>
+            <div className="mt-7 flex items-center justify-start gap-3 text-left">
+              <ShieldCheck size={20} className="shrink-0 text-[rgba(51,51,51,0.7)]" />
+              <p className="text-xs leading-[1.5] text-[rgba(51,51,51,0.7)]">
+                {heroPhoto.trustLine}
+              </p>
+            </div>
           </div>
         </div>
         <div ref={portraitRef} className="hero-photo-portrait relative w-full max-w-[480px] shrink-0 lg:w-[min(40vw,480px)] lg:self-end">

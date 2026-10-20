@@ -24,6 +24,14 @@ export function buildHomePageJsonLd(locale: Locale, dictionary: Dictionary): Rec
         priceRange: dictionary.seo.priceRange,
         description: dictionary.seo.description,
         knowsAbout: dictionary.practiceAreas.map((area) => area.name),
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: dictionary.ui.practiceAreas.heading,
+          itemListElement: dictionary.practiceAreas.map((area) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: area.name, description: area.details.introduction },
+          })),
+        },
         founder: { "@id": `${siteConfig.url}/#stanislav-yatskar` },
         employee: [
           {

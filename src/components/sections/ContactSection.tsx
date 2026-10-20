@@ -74,7 +74,7 @@ export function ContactSection() {
       />
       <div className="relative mx-auto grid max-w-[1080px] grid-cols-1 items-start gap-14 px-7 py-22 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
-          <h2 className="m-0 text-[clamp(34px,5vw,60px)] leading-none font-black tracking-[-0.02em] opacity-80">
+          <h2 className="m-0 text-[clamp(36px,5vw,60px)] leading-[1.05] opacity-80">
             {ui.contact.headingLine1}
             <br />
             {ui.contact.headingLine2}
@@ -93,7 +93,7 @@ export function ContactSection() {
               <span className="block text-xs tracking-[0.08em] text-subtle-fg uppercase">
                 {ui.contact.callNow}
               </span>
-              <span className="block text-2xl font-extrabold tracking-[-0.01em]">
+              <span className="block text-2xl font-semibold">
                 {siteConfig.phone}
               </span>
             </span>
@@ -165,7 +165,7 @@ export function ContactSection() {
           </p>
           <Button
             type="submit"
-            className="h-auto min-w-0 rounded-[7px] px-3 py-4.5 text-center text-base leading-tight font-extrabold tracking-[0.01em] whitespace-normal sm:text-lg"
+            className="h-auto min-w-0 rounded-[7px] px-3 py-4.5 text-center text-base leading-tight font-semibold whitespace-normal sm:text-lg"
           >
             {ui.contact.submit}
           </Button>

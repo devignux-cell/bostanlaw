@@ -1,7 +1,6 @@
 import { Hero } from "@/components/sections/Hero";
 import { LegalMatterPrompt } from "@/components/sections/LegalMatterPrompt";
 import { PracticeAreas } from "@/components/sections/PracticeAreas";
-import { AccidentResourceSection } from "@/components/sections/AccidentResourceSection";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { TeamSection } from "@/components/sections/TeamSection";
 import { FindUsSection } from "@/components/sections/FindUsSection";
@@ -18,7 +17,6 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
       <Hero />
       <LegalMatterPrompt />
       <PracticeAreas />
-      <AccidentResourceSection />
       <WhyChooseUs />
       <TeamSection copy={dictionary.team} />
       <FindUsSection />
