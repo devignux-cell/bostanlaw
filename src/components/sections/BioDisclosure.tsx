@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState, type ReactNode } from "react";
+import { ScrollTrigger } from "@/lib/gsap";
 
 export function BioDisclosure({
   readFullBio,
@@ -20,7 +21,10 @@ export function BioDisclosure({
         type="button"
         aria-expanded={expanded}
         aria-controls={contentId}
-        onClick={() => setExpanded((current) => !current)}
+        onClick={() => {
+          setExpanded((current) => !current);
+          ScrollTrigger.refresh(true);
+        }}
         className="mt-5 inline-flex min-h-11 items-center border-b-2 border-brand text-[15px] font-bold text-ink hover:text-brand focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
       >
         {expanded ? showLess : readFullBio}

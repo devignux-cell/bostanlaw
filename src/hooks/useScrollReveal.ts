@@ -26,50 +26,31 @@ export function useScrollReveal<T extends HTMLElement>(
       const duration = options?.duration ?? 1.05;
       const stagger = options?.stagger ? 0.08 : 0;
       const media = gsap.matchMedia();
-
-      media.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(targets, { clearProps: "opacity,transform,visibility" });
-      });
+      let hasEntered = false;
 
       media.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.set(targets, { autoAlpha: 0, y: enterY });
+        if (hasEntered) return;
 
-        const animateIn = () => {
-          gsap.to(targets, {
-            autoAlpha: 1,
-            y: 0,
-            duration,
-            ease: "power2.out",
-            stagger,
-            overwrite: "auto",
-          });
-        };
-
-        const animateOut = (direction: 1 | -1) => {
-          gsap.to(targets, {
-            autoAlpha: 0,
-            y: direction === 1 ? -enterY : enterY,
-            duration: duration * 0.85,
-            ease: "power1.out",
-            stagger,
-            overwrite: "auto",
-          });
-        };
-
-        const trigger = ScrollTrigger.create({
+        ScrollTrigger.create({
           trigger: root,
-          start: "top 80%",
-          end: "bottom 20%",
-          onEnter: animateIn,
-          onEnterBack: animateIn,
-          onLeave: () => animateOut(1),
-          onLeaveBack: () => animateOut(-1),
-        });
+          start: "top bottom+=15%",
+          onEnter: (trigger) => {
+            hasEntered = true;
+            trigger.kill();
 
-        return () => {
-          trigger.kill();
-          gsap.killTweensOf(targets);
-        };
+            // Fast scrolling or a layout shift can put the content in view
+            // before the trigger fires. Leave it readable in that case.
+            if (root.getBoundingClientRect().top < window.innerHeight) return;
+
+            gsap.from(targets, {
+              opacity: 0,
+              y: enterY,
+              duration,
+              ease: "power2.out",
+              stagger,
+            });
+          },
+        });
       });
 
       return () => media.revert();
