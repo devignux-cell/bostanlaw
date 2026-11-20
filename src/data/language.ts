@@ -32,7 +32,7 @@ export const uiContent = {
     },
     whyChoose: {
       headingLead: "Why Clients Trust",
-      subheading: "Serving individuals and families throughout Boston.",
+      subheading: "Serving people throughout Massachusetts",
     },
     faq: {
       heading: "Common questions",
@@ -100,7 +100,7 @@ export const uiContent = {
     },
     whyChoose: {
       headingLead: "Por que los clientes confian en",
-      subheading: "Sirviendo a personas y familias en todo Boston.",
+      subheading: "Atendemos a personas en todo Massachusetts",
     },
     faq: {
       heading: "Preguntas frecuentes",

@@ -1,9 +1,12 @@
 import Image from "next/image";
 import { BioDisclosure } from "@/components/sections/BioDisclosure";
 import { TeamReveal } from "@/components/sections/TeamReveal";
+import { siteConfig } from "@/data/site";
 import type { TeamCopy } from "@/i18n/types";
 
-const paragraphClass = "m-0 max-w-[72ch] text-[16px] leading-[1.75] text-[#444] sm:text-[17px]";
+const paragraphClass = "max-w-[72ch] text-[16px] leading-[1.75] text-[#444] sm:text-[17px]";
+const portraitSizes = "(min-width: 1200px) 440px, (min-width: 1024px) 40vw, (min-width: 640px) 480px, calc(100vw - 56px)";
+const portraitClass = "aspect-[5/4] w-full rounded-[20px] object-cover object-top";
 
 export function TeamSection({ copy }: { copy: TeamCopy }) {
   return (
@@ -20,12 +23,12 @@ export function TeamSection({ copy }: { copy: TeamCopy }) {
           <div className="grid items-start gap-9 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
             <TeamReveal className="mx-auto w-full max-w-[480px] lg:max-w-none">
               <Image
-                src="/optimized/stan-bio.webp"
+                src="/optimized/stan-bio-crop.webp"
                 alt={copy.stan.imageAlt}
-                width={960}
-                height={1200}
-                sizes="(min-width: 1200px) 440px, (min-width: 1024px) 40vw, (min-width: 640px) 480px, calc(100vw - 56px)"
-                className="h-auto w-full rounded-[20px] object-cover"
+                width={885}
+                height={744}
+                sizes={portraitSizes}
+                className={portraitClass}
               />
             </TeamReveal>
             <div className="min-w-0 lg:pt-2">
@@ -33,7 +36,7 @@ export function TeamSection({ copy }: { copy: TeamCopy }) {
                 {copy.stan.name}
               </h3>
               <p className="mt-3 mb-7 text-[15px] font-bold leading-[1.5] tracking-[0.01em] text-brand sm:text-base">
-                {copy.stan.role}, {copy.stan.organization}
+                {copy.stan.role}, {siteConfig.name}
               </p>
               <p className={paragraphClass}>{copy.stan.paragraphs[0]}</p>
               <BioDisclosure readFullBio={copy.readFullBio} showLess={copy.showLess}>
@@ -46,19 +49,29 @@ export function TeamSection({ copy }: { copy: TeamCopy }) {
         </article>
 
         <article aria-labelledby="paulina-heading" className="mt-20 border-t border-line pt-14 text-left sm:mt-24 sm:pt-16">
-          <TeamReveal className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
-            <div>
+          <TeamReveal className="grid items-start gap-9 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
+            <div className="mx-auto w-full max-w-[480px] lg:max-w-none">
+              <Image
+                src="/optimized/paulina-bio.webp"
+                alt={copy.paulina.name}
+                width={1280}
+                height={859}
+                sizes={portraitSizes}
+                className={portraitClass}
+              />
+            </div>
+            <div className="min-w-0 lg:pt-2">
               <h3 id="paulina-heading" className="m-0 text-[clamp(30px,3.3vw,42px)] leading-[1.15] text-ink">
                 {copy.paulina.name}
               </h3>
-              <p className="mt-3 text-[15px] font-bold leading-[1.5] tracking-[0.01em] text-brand sm:text-base">
-                {copy.paulina.role}, {copy.paulina.organization}
+              <p className="mt-3 mb-7 text-[15px] font-bold leading-[1.5] tracking-[0.01em] text-brand sm:text-base">
+                {copy.paulina.role}, {siteConfig.name}
               </p>
-            </div>
-            <div className="space-y-5">
-              {copy.paulina.paragraphs.map((paragraph) => (
-                <p key={paragraph} className={paragraphClass}>{paragraph}</p>
-              ))}
+              <div className="space-y-5">
+                {copy.paulina.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className={paragraphClass}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </TeamReveal>
         </article>

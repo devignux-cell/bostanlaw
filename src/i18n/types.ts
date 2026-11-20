@@ -44,6 +44,6 @@ export interface TeamCopy {
   subtitle: string;
   readFullBio: string;
   showLess: string;
-  stan: { name: string; role: string; organization: string; imageAlt: string; paragraphs: [string, string, string, string] };
-  paulina: { name: string; role: string; organization: string; paragraphs: [string, string] };
+  stan: { name: string; role: string; imageAlt: string; paragraphs: [string, string, string, string] };
+  paulina: { name: string; role: string; paragraphs: [string, string] };
 }

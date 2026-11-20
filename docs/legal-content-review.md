@@ -2,6 +2,14 @@
 
 This implementation is a review draft. Bostan Law counsel must approve the document's public release, the website disclaimer, the contact-form warning, and all translations before production deployment. The site has not been deployed by this task.
 
+## Medical Providers and PIP Recovery
+
+- The English service text in `src/i18n/medical-providers.ts` uses the client's refinement brief verbatim. All five steps appear in their original order.
+- Counsel should confirm the descriptions of recoverable medical expenses and policy limits, full billed-amount recovery, attorney's fees and litigation costs, statutory demand and timing, litigation and arbitration, and the zero-upfront-fee and contingency terms.
+- The source uses “coordination of benefit issues” and “statutory window.” Confirm the intended terminology and whether the latter needs more specificity before publication.
+- The evaluation link uses the existing contact form. The note beside it asks visitors to keep patient records out of that form. Confirm how the firm wants providers to share records after the initial inquiry.
+- Review all translations, including Spanish terminology for PIP, independent medical examinations, benefit coordination, customary charges, and fees. The new practice-area descriptions and details also require approval.
+
 ## Original accident letter
 
 - Source: `public/Police Report Letter To New Potential Clients.docx`. Its SHA-256 is `73c9787e4af8dc08a2ede33b8fad79cd4057fc0ab74c9245fcf4694295c4e393` before and after conversion. Keep this file unchanged.

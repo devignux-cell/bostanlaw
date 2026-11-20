@@ -2,6 +2,7 @@
 
 import { Dialog } from "@base-ui/react/dialog";
 import { X } from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import { legalDisclaimerPath, type Locale } from "@/i18n/config";
 import type { UiCopy } from "@/i18n/types";
@@ -21,14 +22,24 @@ export function PracticeAreaDialog({ area, language, ui, legalHeading, onConsult
     <Dialog.Portal>
       <Dialog.Backdrop className="fixed inset-0 z-[100] bg-black/55 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
       <Dialog.Popup className="fixed inset-0 z-[101] flex h-[100dvh] w-full flex-col overflow-hidden bg-white text-ink shadow-[0_24px_70px_rgba(0,0,0,0.22)] transition-[opacity,transform] duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none sm:top-1/2 sm:left-1/2 sm:inset-auto sm:h-auto sm:max-h-[88dvh] sm:w-[min(720px,calc(100vw-32px))] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-[18px] sm:data-ending-style:translate-y-[calc(-50%+8px)] sm:data-starting-style:translate-y-[calc(-50%+8px)]">
-        <div className="flex shrink-0 items-start justify-between gap-5 border-b border-line px-6 pt-[max(20px,env(safe-area-inset-top))] pb-5 sm:px-9 sm:pt-8 sm:pb-6">
-          <div className="min-w-0">
-            <p className="mb-2 text-xs font-bold tracking-[0.12em] text-brand uppercase">{ui.practiceAreaDialog.eyebrow}</p>
-            <Dialog.Title className="m-0 font-heading text-[clamp(34px,5vw,46px)] leading-[1.02] font-extrabold text-ink">
+        <div className="relative isolate flex min-h-[152px] shrink-0 items-start justify-between gap-4 overflow-hidden border-b border-line bg-ink px-6 pt-[max(20px,env(safe-area-inset-top))] pb-5 text-white sm:min-h-40 sm:px-9 sm:py-6">
+          <Image
+            src={area.image}
+            alt=""
+            fill
+            loading="eager"
+            sizes="(min-width: 752px) 720px, (min-width: 640px) calc(100vw - 32px), 100vw"
+            className="practice-area-dialog-photo pointer-events-none object-cover object-[center_58%]"
+          />
+          <span aria-hidden="true" className="pointer-events-none absolute inset-0 bg-linear-to-r from-black/75 via-black/[.58] via-[82%] to-black/25" />
+          <div className="relative min-w-0 max-w-[80%] self-center sm:max-w-[76%]">
+            <p className="mb-2 text-xs font-bold tracking-[0.12em] uppercase">{ui.practiceAreaDialog.eyebrow}</p>
+            <Dialog.Title className="m-0 font-heading text-[clamp(34px,5vw,46px)] leading-[1.02] font-extrabold">
               {area.name}
             </Dialog.Title>
+            <p className="mt-2 text-sm leading-[1.45] text-white/95 sm:text-base">{area.description}</p>
           </div>
-          <Dialog.Close aria-label={ui.practiceAreaDialog.close} className="flex size-11 shrink-0 items-center justify-center rounded-lg text-ink transition-colors duration-200 hover:bg-black/[0.045] focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none">
+          <Dialog.Close aria-label={ui.practiceAreaDialog.close} className="relative flex size-11 shrink-0 items-center justify-center rounded-full bg-white/90 text-ink transition-colors duration-200 hover:bg-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink focus-visible:outline-2 focus-visible:outline-transparent motion-reduce:transition-none">
             <X size={22} aria-hidden="true" />
           </Dialog.Close>
         </div>

@@ -1,4 +1,4 @@
-import { siteConfig } from "@/data/site";
+import { siteConfig, siteLogo } from "@/data/site";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 import { absoluteUrl, localeUrl } from "@/lib/seo";
@@ -12,10 +12,11 @@ export function buildHomePageJsonLd(locale: Locale, dictionary: Dictionary): Rec
         "@type": "LegalService",
         "@id": `${siteConfig.url}/#legal-service`,
         name: siteConfig.name,
+        legalName: siteConfig.legalName,
         url: siteConfig.url,
         inLanguage: locale,
         image: absoluteUrl("/optimized/hero-background.webp"),
-        logo: absoluteUrl("/optimized/bostanlawlogo.webp"),
+        logo: absoluteUrl(siteLogo.src),
         telephone: siteConfig.phone,
         faxNumber: siteConfig.fax,
         ...(siteConfig.email ? { email: siteConfig.email } : {}),
@@ -40,7 +41,7 @@ export function buildHomePageJsonLd(locale: Locale, dictionary: Dictionary): Rec
             name: "Stanislav Yatskar",
             jobTitle: dictionary.team.stan.role,
             description: dictionary.team.stan.paragraphs[0],
-            image: absoluteUrl("/optimized/stan-bio.webp"),
+            image: absoluteUrl("/optimized/stan-bio-crop.webp"),
             inLanguage: locale,
           },
           {
@@ -49,6 +50,7 @@ export function buildHomePageJsonLd(locale: Locale, dictionary: Dictionary): Rec
             name: dictionary.team.paulina.name,
             jobTitle: dictionary.team.paulina.role,
             description: dictionary.team.paulina.paragraphs[0],
+            image: absoluteUrl("/optimized/paulina-bio.webp"),
             inLanguage: locale,
           },
         ],

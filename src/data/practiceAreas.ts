@@ -33,20 +33,18 @@ export const practiceAreasByLanguage: Record<"en" | "es", PracticeArea[]> = {
       details: practiceAreaDetailsByLocale.en["slip-fall"],
     },
     {
-      id: "wrongful-death",
-      name: "Wrongful Death",
-      description:
-        "Compassionate help when a loss was someone else's fault.",
-      image: "/optimized/practice-wrongful-death.webp",
-      details: practiceAreaDetailsByLocale.en["wrongful-death"],
+      id: "pedestrian-accident",
+      name: "Pedestrian Accident",
+      description: "Help for pedestrians injured in motor vehicle crashes.",
+      image: "/optimized/practice-pedestrian-accident.webp",
+      details: practiceAreaDetailsByLocale.en["pedestrian-accident"],
     },
     {
-      id: "dog-bite",
-      name: "Dog Bite",
-      description:
-        "If you've been bitten we'll gather all the evidence to protect you.",
-      image: "/optimized/practice-dog-bite.webp",
-      details: practiceAreaDetailsByLocale.en["dog-bite"],
+      id: "scooter-accident",
+      name: "Scooter Accident",
+      description: "Guidance after an injury in a crash involving a scooter.",
+      image: "/optimized/practice-scooter-accident.webp",
+      details: practiceAreaDetailsByLocale.en["scooter-accident"],
     },
   ],
   es: [
@@ -80,20 +78,18 @@ export const practiceAreasByLanguage: Record<"en" | "es", PracticeArea[]> = {
       details: practiceAreaDetailsByLocale.es["slip-fall"],
     },
     {
-      id: "wrongful-death",
-      name: "Fallecimiento por culpa ajena",
-      description:
-        "Ayuda compasiva cuando una pérdida fue culpa de otra persona.",
-      image: "/optimized/practice-wrongful-death.webp",
-      details: practiceAreaDetailsByLocale.es["wrongful-death"],
+      id: "pedestrian-accident",
+      name: "Accidente de peatón",
+      description: "Ayuda para peatones lesionados en accidentes con vehículos motorizados.",
+      image: "/optimized/practice-pedestrian-accident.webp",
+      details: practiceAreaDetailsByLocale.es["pedestrian-accident"],
     },
     {
-      id: "dog-bite",
-      name: "Mordeduras de perro",
-      description:
-        "Si le mordieron, reuniremos las pruebas necesarias para protegerle.",
-      image: "/optimized/practice-dog-bite.webp",
-      details: practiceAreaDetailsByLocale.es["dog-bite"],
+      id: "scooter-accident",
+      name: "Accidente de scooter",
+      description: "Orientación tras una lesión en un accidente en el que intervino un scooter.",
+      image: "/optimized/practice-scooter-accident.webp",
+      details: practiceAreaDetailsByLocale.es["scooter-accident"],
     },
   ],
 };

@@ -185,6 +185,7 @@ function HeroCentered() {
 function HeroPhoto() {
   const { dictionary, language } = useLanguage();
   const { heroPhoto } = dictionary.homepage;
+  const hasStanWordmark = heroPhoto.primaryLine2.endsWith(" STAN");
   const backgroundRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const portraitRef = useRef<HTMLDivElement>(null);
@@ -259,8 +260,30 @@ function HeroPhoto() {
           </div>
           <div ref={contentRef}>
             <h1 className={cn("hero-title mt-6 text-ink", language === "es" && "hero-title--spanish", language === "ru" && "hero-title--cyrillic")}>
-              <span>{heroPhoto.primaryLine1}</span>{" "}
-              <span className="text-brand">{heroPhoto.primaryLine2}</span>
+              <span className="hero-title-lead">{heroPhoto.primaryLine1}</span>{" "}
+              <span className="tracking-[-0.01em] text-brand">
+                {hasStanWordmark ? (
+                  <>
+                    <span className="sr-only">{heroPhoto.primaryLine2}</span>
+                    <span aria-hidden="true">
+                      {heroPhoto.primaryLine2.slice(0, -"STAN".length)}
+                      <span className="inline-block whitespace-nowrap">
+                        ST<span className="relative inline-block align-baseline">
+                          <span className="invisible">A</span>
+                          <Image
+                            src="/optimized/stan-letter-a.webp"
+                            alt=""
+                            width={297}
+                            height={285}
+                            unoptimized
+                            className="absolute bottom-[.08em] left-1/2 h-[.84em] w-auto max-w-none -translate-x-1/2"
+                          />
+                        </span>N
+                      </span>
+                    </span>
+                  </>
+                ) : heroPhoto.primaryLine2}
+              </span>
             </h1>
             <p className="mt-5 max-w-[560px] text-[clamp(17px,1.6vw,20px)] leading-[1.35] font-medium text-[#333]">
               {heroPhoto.headlineLine1} {heroPhoto.headlineLine2}
@@ -284,10 +307,14 @@ function HeroPhoto() {
                 size="lg"
                 variant="outline"
                 nativeButton={false}
-                className="h-auto min-w-0 w-full gap-2.5 rounded-md border-[1.5px] border-ink bg-transparent px-4 py-[17px] text-center text-[15px] whitespace-normal text-ink hover:bg-black/5 sm:w-auto sm:px-[30px] sm:text-[17px]"
+                className="h-auto min-h-12 min-w-0 w-full gap-2.5 rounded-md border-[1.5px] border-ink bg-transparent px-4 py-2.5 text-center whitespace-normal text-ink hover:bg-black/5 sm:w-auto sm:px-6"
                 render={
                   <a href={toTelHref(siteConfig.phone)}>
-                    <Phone weight="fill" size={18} /> {heroPhoto.ctaSecondaryLabel}
+                    <Phone weight="fill" aria-hidden="true" className="size-[18px] text-brand" />
+                    <span className="flex flex-col items-center">
+                      <span className="text-xs">{heroPhoto.ctaSecondaryLabel}{" "}</span>
+                      <span className="whitespace-nowrap text-lg leading-tight font-bold tabular-nums">{siteConfig.phone}</span>
+                    </span>
                   </a>
                 }
               />
