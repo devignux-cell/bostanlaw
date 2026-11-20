@@ -1,5 +1,6 @@
 export interface SiteConfig {
   name: string;
+  legalName: string;
   shortName: string;
   description: string;
   url: string;

@@ -3,8 +3,8 @@ export const practiceAreaIds = [
   "motorcycle-accidents",
   "truck-accidents",
   "slip-fall",
-  "wrongful-death",
-  "dog-bite",
+  "pedestrian-accident",
+  "scooter-accident",
 ] as const;
 
 export type PracticeAreaId = (typeof practiceAreaIds)[number];

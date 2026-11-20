@@ -141,6 +141,12 @@
   h1, h2, h3 {
     @apply font-heading font-bold;
   }
+  :where(a[href], button) {
+    cursor: pointer;
+  }
+  :where(a[href], button):is(:disabled, [aria-disabled="true"]) {
+    cursor: not-allowed;
+  }
   section[id] {
     scroll-margin-top: 8rem;
   }
@@ -154,7 +160,7 @@
   }
 
   .hero-brand-lockup [data-hero-brand-descriptor] {
-    /* The PNG's visible ink ends 207px before the bottom of its 2172px-wide canvas. */
+    /* The logo artwork ends 207px before the bottom of its 2172px-wide canvas. */
     margin-top: calc(-9.53% + 5px);
   }
 
@@ -163,8 +169,16 @@
     font-size: clamp(1.75rem, 3vw, 2.75rem);
     font-weight: 900;
     line-height: 1.05;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     font-synthesis: none;
+  }
+
+  .hero-title-lead {
+    font-family: var(--font-body);
+    font-size: 0.92em;
+    font-style: italic;
+    font-weight: 800;
+    letter-spacing: -0.04em;
   }
 
   .hero-title--cyrillic {
@@ -285,6 +299,17 @@
   transform: translate(3px, -3px);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .practice-area-dialog-photo {
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+  }
+
+  [data-starting-style] .practice-area-dialog-photo {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+}
+
 .why-choose-wordmark {
   /* Trim only the transparent canvas around the original 2172 × 724 PNG. */
   --logo-canvas-height: clamp(5rem, 7.5vw, 6.5rem);
@@ -343,6 +368,43 @@
 
 .why-choose-card:hover .why-choose-card-gradient {
   opacity: 0.75;
+}
+
+.consultation-field {
+  --consultation-field-opacity: 82%;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.consultation-field:is(:focus, :not(:placeholder-shown)):not(:disabled) {
+  background-color: rgb(255 255 255 / var(--consultation-field-opacity));
+  color: var(--color-ink);
+}
+
+.consultation-field:focus {
+  --consultation-field-opacity: 93%;
+  border-color: var(--color-muted-fg);
+  outline: 2px solid var(--color-line-strong);
+  outline-offset: 2px;
+}
+
+.consultation-field:focus::placeholder {
+  color: var(--color-muted-fg);
+}
+
+.consultation-field:is(:autofill, :-webkit-autofill) {
+  /* Browsers set their autofill background with !important. */
+  box-shadow: inset 0 0 0 100px color-mix(in srgb, white var(--consultation-field-opacity), var(--color-ink));
+  -webkit-text-fill-color: var(--color-ink);
+}
+
+.consultation-field:is(:user-invalid, [aria-invalid="true"]) {
+  border-color: var(--color-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consultation-field {
+    transition: none;
+  }
 }
 
 @media (max-width: 767px) {

@@ -2,6 +2,7 @@ import type { SiteConfig } from "@/types/site";
 
 export const siteConfig: SiteConfig = {
   name: "BOSTAN LAW",
+  legalName: "BOSTAN LAW, PLLC",
   shortName: "BOSTAN LAW",
   description:
     "Personal injury attorney serving Boston, MA. Free consultation. No fee unless we win.",
@@ -21,4 +22,16 @@ export const siteConfig: SiteConfig = {
   mapsEmbedUrl:
     "https://maps.google.com/maps?q=56+Warren+St+Suite+301%2C+Roxbury%2C+MA+02119&t=&z=16&ie=UTF8&iwloc=&output=embed",
   googleRating: { value: 5.0, count: 2 },
+};
+
+export const siteLogo = {
+  src: "/optimized/bostan-law-blue.webp",
+  width: 1086,
+  height: 362,
+};
+
+export const originalSiteLogo = {
+  src: "/bostanlawmorespacelogo.png",
+  width: 2172,
+  height: 724,
 };

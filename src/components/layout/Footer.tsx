@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { siteConfig } from "@/data/site";
+import { siteConfig, siteLogo } from "@/data/site";
 import { toTelHref } from "@/lib/utils";
 import { legalDisclaimerPath } from "@/i18n/config";
 
@@ -14,10 +14,8 @@ export function Footer() {
     <footer className="footer border-t border-line bg-white">
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-5 px-7 pt-2">
         <Image
-          src="/bostanlawmorespacelogo.png"
+          {...siteLogo}
           alt={siteConfig.name}
-          width={2172}
-          height={724}
           sizes="144px"
           className="h-12 w-auto"
         />
@@ -33,7 +31,7 @@ export function Footer() {
             {dictionary.legal.heading}
           </a>
           <span>
-            © {year} {siteConfig.name}
+            © {year} {siteConfig.legalName}
             <span className="sr-only"> {ui.footer.copyrightLabel}</span>
           </span>
         </div>

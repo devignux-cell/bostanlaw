@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { siteConfig } from "@/data/site";
+import { originalSiteLogo, siteConfig } from "@/data/site";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export function WhyChooseUs() {
@@ -18,10 +18,8 @@ export function WhyChooseUs() {
             <span>{ui.whyChoose.headingLead}</span>
             <span className="why-choose-wordmark">
               <Image
-                src="/bostanlawmorespacelogo.png"
+                {...originalSiteLogo}
                 alt={siteConfig.name}
-                width={2172}
-                height={724}
                 className="why-choose-wordmark-image"
                 unoptimized
               />

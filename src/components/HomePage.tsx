@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { LegalMatterPrompt } from "@/components/sections/LegalMatterPrompt";
 import { PracticeAreas } from "@/components/sections/PracticeAreas";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+import { MedicalProvidersSection } from "@/components/sections/MedicalProvidersSection";
 import { TeamSection } from "@/components/sections/TeamSection";
 import { FindUsSection } from "@/components/sections/FindUsSection";
 import { FAQSection } from "@/components/sections/FAQSection";
@@ -9,6 +10,7 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { buildHomePageJsonLd } from "@/lib/jsonLd";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
+import { medicalProvidersByLocale } from "@/i18n/medical-providers";
 
 export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: Dictionary }) {
   return (
@@ -18,6 +20,7 @@ export function HomePage({ locale, dictionary }: { locale: Locale; dictionary: D
       <LegalMatterPrompt />
       <PracticeAreas />
       <WhyChooseUs />
+      <MedicalProvidersSection copy={medicalProvidersByLocale[locale]} />
       <TeamSection copy={dictionary.team} />
       <FindUsSection />
       <FAQSection />

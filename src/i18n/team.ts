@@ -11,7 +11,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     stan: {
       name: "Stanislav Yatskar, Esq.",
       role: "Founder & Managing Attorney",
-      organization: "BOSTAN LAW, PLLC",
       imageAlt: "Stanislav Yatskar, Founder and Managing Attorney at BOSTAN LAW",
       paragraphs: [
         "Stan Yatskar represents individuals and families across Massachusetts in serious personal injury claims, car accidents, motorcycle crashes, and broad civil litigation matters. Stan provides relentless, transparent advocacy to hold negligent parties and their insurance companies accountable, ensuring every client’s voice is heard and their recovery is protected.",
@@ -23,7 +22,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     paulina: {
       name: "Paulina Duarte",
       role: "Claims Manager",
-      organization: "BOSTAN LAW, PLLC",
       paragraphs: [
         "As Claims Manager at BOSTAN LAW, PLLC, Paulina Duarte manages client cases with exceptional detail and care. Known for being extremely thorough, she leaves no stone unturned when it comes to tracking down medical records, verifying itemized billing, and ensuring insurance adjusters have zero excuses to delay a claim. Working side-by-side with clients, doctors, and insurers from day one, Paulina keeps every case moving forward efficiently while serving as a reassuring, accessible guide from intake to resolution. Her meticulous approach guarantees our clients always have a tireless advocate in their corner.",
         "Outside of the office, Paulina brings that same dedication to animal rescue. She is a passionate pet lover who has rescued numerous animals over the years—bringing that same big heart, energy, and genuine care to every family we represent.",
@@ -38,7 +36,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     stan: {
       name: "Stanislav Yatskar, Esq.",
       role: "Fundador y abogado director",
-      organization: "BOSTAN LAW, PLLC",
       imageAlt: "Stanislav Yatskar, fundador y abogado director de BOSTAN LAW",
       paragraphs: [
         "Stan Yatskar representa a personas y familias de todo Massachusetts en reclamaciones por lesiones personales graves, accidentes automovilísticos, choques de motocicleta y una amplia variedad de asuntos de litigio civil. Stan ofrece una defensa incansable y transparente para exigir responsabilidades a las partes negligentes y a sus aseguradoras, procurando que se escuche la voz de cada cliente y se proteja su recuperación.",
@@ -50,7 +47,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     paulina: {
       name: "Paulina Duarte",
       role: "Gerente de reclamaciones",
-      organization: "BOSTAN LAW, PLLC",
       paragraphs: [
         "Como gerente de reclamaciones en BOSTAN LAW, PLLC, Paulina Duarte gestiona los casos de los clientes con un cuidado y una atención al detalle excepcionales. Conocida por su meticulosidad, no deja ningún detalle sin revisar al localizar expedientes médicos, verificar facturas desglosadas y asegurarse de que los ajustadores de seguros no tengan excusas para retrasar una reclamación. Trabajando codo a codo con clientes, médicos y aseguradoras desde el primer día, Paulina mantiene cada caso en marcha con eficacia y ofrece una guía tranquilizadora y accesible desde la primera consulta hasta su resolución. Su enfoque meticuloso garantiza que nuestros clientes siempre tengan a su lado una defensora incansable.",
         "Fuera de la oficina, Paulina aporta esa misma dedicación al rescate de animales. Es una apasionada de las mascotas y ha rescatado a numerosos animales a lo largo de los años; lleva ese mismo gran corazón, energía y auténtico interés por los demás a cada familia que representamos.",
@@ -65,7 +61,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     stan: {
       name: "Stanislav Yatskar, Esq.",
       role: "Fundador y advogadu diretor",
-      organization: "BOSTAN LAW, PLLC",
       imageAlt: "Stanislav Yatskar, fundador y advogadu diretor di BOSTAN LAW",
       paragraphs: [
         "Stan Yatskar ta reprezenta pesoas y famílias na tudu Massachusetts na riklamasons di ferimentus pesoal gravi, asidentis di karu, kolizons di mota y várius asuntus di litíjiu sivil. Stan ta presta un defesa persistenti y transparenti pa responsabiliza pesoas negligenti y ses seguradoras, pa kada klienti ten se voz obi y se rekuperason protejidu.",
@@ -77,7 +72,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     paulina: {
       name: "Paulina Duarte",
       role: "Gestora di riklamasons",
-      organization: "BOSTAN LAW, PLLC",
       paragraphs: [
         "Komu gestora di riklamasons na BOSTAN LAW, PLLC, Paulina Duarte ta trata di kasus di klientis ku atenson y kuidadu esepsional pa detalhis. Konxedu pa se trabadju minusiôzu, el ka ta dexa ninhun pedra sen vira na buska di rejistus médiku, na verifikason di faturas detalhadu y na garantia di ki ajustadoris di seguru ka ten diskulpa pa atraza un riklamason. Desdi primeru dia, Paulina ta trabadja ladu a ladu ku klientis, dotoris y seguradoras, ta manté kada kazu ta avansa ku efisiénsia y ta ser un guia asesível y tranquilizador desdi entrada ti rezoluson. Se forma minusiôzu di trabadja ta garanti ki nos klientis ten senpri un defensora inkansável na ses ladu.",
         "Fora di skritóriu, Paulina ta leva es mesmu dedikason pa salvamentu di animal. El ta ama animal y, ku pasaji di anus, el dja salva monti animal; el ta leva es mesmu korason grandi, enerjia y kuidadu sinceru pa kada família ki nu ta reprezenta.",
@@ -92,7 +86,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     stan: {
       name: "Stanislav Yatskar, Esq.",
       role: "Fondatè ak avoka direktè",
-      organization: "BOSTAN LAW, PLLC",
       imageAlt: "Stanislav Yatskar, fondatè ak avoka direktè BOSTAN LAW",
       paragraphs: [
         "Stan Yatskar reprezante moun ak fanmi toupatou nan Massachusetts nan reklamasyon pou blesi pèsonèl grav, aksidan machin, kolizyon motosiklèt, ak divès dosye litij sivil. Stan defann kliyan li yo san pran souf, ak transparans, pou fè moun ki te neglijan yo ak konpayi asirans yo rann kont, pou vwa chak kliyan jwenn plas li epi pou rekiperasyon yo jwenn pwoteksyon.",
@@ -104,7 +97,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     paulina: {
       name: "Paulina Duarte",
       role: "Responsab reklamasyon",
-      organization: "BOSTAN LAW, PLLC",
       paragraphs: [
         "Kòm responsab reklamasyon nan BOSTAN LAW, PLLC, Paulina Duarte jere dosye kliyan yo ak anpil swen ak yon atansyon eksepsyonèl pou detay. Yo konnen li kòm yon moun ki egzamine tout bagay byen: li chèche dosye medikal yo, verifye fakti detaye yo, epi veye pou moun k ap evalye reklamasyon asirans yo pa gen okenn eskiz pou retade yon reklamasyon. Depi premye jou a, Paulina travay kòtakòt ak kliyan, doktè, ak konpayi asirans yo pou chak dosye avanse avèk efikasite. Li se yon gid ki kalme moun e ki fasil pou kontakte, depi premye kontak la jouk dosye a rezoud. Metòd travay li, ki pran swen tout detay, garanti kliyan nou yo toujou gen yon moun ki defann yo san pran souf bò kote yo.",
         "Deyò biwo a, Paulina mete menm devouman sa a nan sekou bèt. Li renmen bèt anpil e li sove anpil bèt pandan ane yo; li pote menm gwo kè sa a, menm enèji ak menm swen sensè pou chak fanmi nou reprezante.",
@@ -119,7 +111,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     stan: {
       name: "Stanislav Yatskar, Esq.",
       role: "Основатель и управляющий адвокат",
-      organization: "BOSTAN LAW, PLLC",
       imageAlt: "Станислав Яцкар, основатель и управляющий адвокат BOSTAN LAW",
       paragraphs: [
         "Стэн Яцкар представляет интересы жителей Массачусетса и их семей по делам о серьезных телесных повреждениях, автомобильных и мотоциклетных авариях, а также по широкому кругу гражданских споров. Стэн настойчиво и открыто защищает клиентов, добиваясь ответственности небрежных сторон и их страховых компаний, чтобы голос каждого клиента был услышан, а его восстановление — защищено.",
@@ -131,7 +122,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     paulina: {
       name: "Paulina Duarte",
       role: "Руководитель по работе со страховыми требованиями",
-      organization: "BOSTAN LAW, PLLC",
       paragraphs: [
         "В должности руководителя по работе со страховыми требованиями в BOSTAN LAW, PLLC Паулина Дуарте ведет дела клиентов с исключительным вниманием к деталям и заботой. Благодаря своей тщательности она не упускает ничего при поиске медицинских документов, проверке детализированных счетов и подготовке материалов так, чтобы у специалистов страховых компаний не было поводов затягивать рассмотрение требования. С первого дня Паулина работает бок о бок с клиентами, врачами и страховщиками, помогает каждому делу продвигаться без промедления и остается доступным, поддерживающим проводником от первого обращения до разрешения дела. Ее скрупулезный подход гарантирует, что рядом с нашими клиентами всегда есть неутомимый защитник их интересов.",
         "Вне офиса Паулина с той же самоотдачей помогает спасать животных. Она очень любит домашних питомцев и за многие годы спасла немало животных; такую же душевную щедрость, энергию и искреннюю заботу она привносит в работу с каждой семьей, которую мы представляем.",
@@ -146,7 +136,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     stan: {
       name: "Stanislav Yatskar, Esq.",
       role: "Fondateur et avocat directeur",
-      organization: "BOSTAN LAW, PLLC",
       imageAlt: "Stanislav Yatskar, fondateur et avocat directeur de BOSTAN LAW",
       paragraphs: [
         "Stan Yatskar représente des personnes et des familles dans tout le Massachusetts pour des demandes liées à des blessures corporelles graves, des accidents de voiture, des collisions à moto et de nombreux litiges civils. Stan défend ses clients avec ténacité et transparence afin de faire répondre de leurs actes les parties négligentes et leurs assureurs, de veiller à ce que chaque client soit entendu et de protéger son rétablissement.",
@@ -158,7 +147,6 @@ export const teamByLocale: Record<Locale, TeamCopy> = {
     paulina: {
       name: "Paulina Duarte",
       role: "Responsable des réclamations",
-      organization: "BOSTAN LAW, PLLC",
       paragraphs: [
         "En tant que responsable des réclamations chez BOSTAN LAW, PLLC, Paulina Duarte suit les dossiers des clients avec un souci du détail et une attention exceptionnels. Réputée pour sa grande rigueur, elle ne néglige aucune piste lorsqu’il faut retrouver des dossiers médicaux, vérifier des factures détaillées et faire en sorte que les gestionnaires de sinistres n’aient aucune excuse pour retarder une demande. Dès le premier jour, Paulina travaille aux côtés des clients, des médecins et des assureurs pour faire progresser chaque dossier efficacement, tout en restant une interlocutrice rassurante et accessible, du premier contact jusqu’à la résolution. Sa méthode méticuleuse garantit à nos clients la présence constante d’une défenseure infatigable à leurs côtés.",
         "En dehors du bureau, Paulina consacre cette même énergie au sauvetage des animaux. Passionnée par les animaux de compagnie, elle en a recueilli et sauvé de nombreux au fil des ans; elle apporte cette même générosité, cette énergie et cette attention sincère à chaque famille que nous représentons.",

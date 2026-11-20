@@ -14,8 +14,8 @@ import { trackEvent } from "@/lib/analytics";
 import { legalDisclaimerPath } from "@/i18n/config";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-const darkFieldClass =
-  "h-auto rounded-[7px] border border-[#333] bg-[rgba(26,26,26,0.6)] px-4 py-3.5 text-base text-white backdrop-blur-[2px] placeholder:text-[#7A7A7A] focus-visible:border-brand focus-visible:ring-0";
+const consultationFieldClass =
+  "consultation-field h-auto rounded-[7px] border border-[#333] bg-[rgba(26,26,26,0.6)] px-4 py-3.5 text-base text-white backdrop-blur-[2px] placeholder:text-[#7A7A7A] focus-visible:ring-0";
 
 export function ContactSection() {
   const ref = useScrollReveal<HTMLElement>();
@@ -113,7 +113,7 @@ export function ContactSection() {
                 onInvalid={handleInvalid}
                 onInput={clearValidation}
                 placeholder={ui.contact.name}
-                className={darkFieldClass}
+                className={consultationFieldClass}
               />
             </div>
             <div>
@@ -127,7 +127,7 @@ export function ContactSection() {
                 onInvalid={handleInvalid}
                 onInput={clearValidation}
                 placeholder={ui.contact.phone}
-                className={darkFieldClass}
+                className={consultationFieldClass}
               />
             </div>
           </div>
@@ -142,7 +142,7 @@ export function ContactSection() {
               onInvalid={handleInvalid}
               onInput={clearValidation}
               placeholder={ui.contact.email}
-              className={darkFieldClass}
+              className={consultationFieldClass}
             />
           </div>
           <div>
@@ -154,7 +154,7 @@ export function ContactSection() {
               name="message"
               rows={5}
               placeholder={ui.contact.message}
-              className={`${darkFieldClass} min-h-32 resize-y`}
+              className={`${consultationFieldClass} min-h-32 resize-y`}
             />
           </div>
           <p className="m-0 text-left text-[13px] leading-[1.55] text-white/80">
