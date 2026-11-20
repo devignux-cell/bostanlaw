@@ -153,10 +153,17 @@
 }
 
 @layer components {
+  .header[data-hero-brand="true"] .header-brand-base {
+    position: relative;
+    aspect-ratio: 3 / 1;
+  }
+
   .header[data-hero-brand="true"] .header-brand-link {
-    transform: translate3d(max(-6px, calc(18.5px - 4.466vw)), 90px, 0) scale(3.8);
-    transform-origin: top left;
-    will-change: transform;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 380%;
+    transform: translate(max(-6px, calc(18.5px - 4.466vw)), 90px);
   }
 
   .hero-brand-lockup [data-hero-brand-descriptor] {
@@ -191,25 +198,29 @@
 
 @media (min-width: 640px) and (max-width: 767px) {
   .header[data-hero-brand="true"] .header-brand-link {
-    transform: translate3d(max(-22px, calc((100vw - 600px) / 2 - 50px)), 119px, 0) scale(3.3);
+    width: 330%;
+    transform: translate(max(-22px, calc((100vw - 600px) / 2 - 50px)), 119px);
   }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .header[data-hero-brand="true"] .header-brand-link {
-    transform: translate3d(calc((100vw - 600px) / 2 - 50px), 119px, 0) scale(3.3);
+    width: 330%;
+    transform: translate(calc((100vw - 600px) / 2 - 50px), 119px);
   }
 }
 
 @media (max-width: 359px) {
   .header[data-hero-brand="true"] .header-brand-link {
-    transform: translate3d(4px, 90px, 0) scale(3.3);
+    width: 330%;
+    transform: translate(4px, 90px);
   }
 }
 
 @media (min-width: 1024px) {
   .header[data-hero-brand="true"] .header-brand-link {
-    transform: translate3d(-22px, 132px, 0) scale(2.61);
+    width: 261%;
+    transform: translate(-22px, 132px);
   }
 }
 

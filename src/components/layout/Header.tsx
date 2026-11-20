@@ -123,7 +123,7 @@ export function Header() {
       return {
         x: expanded.left - compact.left - expanded.width * HERO_LOGO_LEFT_INSET,
         y: expanded.top + window.scrollY - compact.top,
-        scale: expanded.width / compact.width,
+        width: expanded.width,
       };
     };
 
@@ -144,10 +144,10 @@ export function Header() {
           {
             x: () => measure().x,
             y: () => measure().y,
-            scale: () => measure().scale,
-            transformOrigin: "top left",
+            // Size the image directly so the browser draws it from the full-resolution source.
+            width: () => measure().width,
           },
-          { x: 0, y: 0, scale: 1 },
+          { x: 0, y: 0, width: () => base.getBoundingClientRect().width, autoRound: false },
           0,
         )
         .fromTo(phoneNumber, { scale: 1 }, { scale: COMPACT_PHONE_SCALE }, 0);
@@ -167,8 +167,8 @@ export function Header() {
     media.add("(prefers-reduced-motion: reduce)", () => {
       const update = () => {
         const expanded = window.scrollY < SCROLL_THRESHOLD / 2;
-        const geometry = expanded ? measure() : { x: 0, y: 0, scale: 1 };
-        gsap.set(link, { ...geometry, transformOrigin: "top left" });
+        const geometry = expanded ? measure() : { x: 0, y: 0, width: "100%" };
+        gsap.set(link, { ...geometry, autoRound: false });
         gsap.set(phoneNumber, { scale: expanded ? 1 : COMPACT_PHONE_SCALE });
         if (descriptor) gsap.set(descriptor, { autoAlpha: expanded ? 1 : 0, y: 0 });
       };
@@ -211,8 +211,8 @@ export function Header() {
       style={{ backgroundColor: "rgb(255 255 255 / 0)", borderColor: "rgb(236 236 232 / 0)", backdropFilter: "blur(0px)", WebkitBackdropFilter: "blur(0px)" }}
     >
       <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between gap-1 px-3 sm:h-28 sm:gap-4 sm:px-7 lg:h-32">
-        <div ref={brandBaseRef} className="w-[clamp(5rem,22vw,8rem)] shrink-0 sm:w-[150px] lg:w-[190px]">
-          <a ref={brandLinkRef} href={onLegalPage ? homeHref : "#top"} className="header-brand-link flex w-full items-center">
+        <div ref={brandBaseRef} className="header-brand-base w-[clamp(5rem,22vw,8rem)] shrink-0 sm:w-[150px] lg:w-[190px]">
+          <a ref={brandLinkRef} href={onLegalPage ? homeHref : "#top"} className="header-brand-link flex items-center">
             <Image {...(hasHeroBrand ? originalSiteLogo : siteLogo)} alt={siteConfig.name} className="h-auto w-full" loading="eager" fetchPriority="high" unoptimized />
           </a>
         </div>
